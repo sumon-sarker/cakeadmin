@@ -55,8 +55,10 @@ $cakeDescription = 'CakeAdmin: authentication, authorization and role management
         <?php echo $this->element('top-menu') ?>
 
         <div class="right_col" role="main">
-          <?= $this->Flash->render(); ?>
-          <?= $this->fetch('content') ?>
+            <div class="">
+              <?= $this->Flash->render(); ?>
+              <?= $this->fetch('content') ?>
+            </div>
         </div>
 
         <footer>
