@@ -29,13 +29,13 @@ $cakeDescription = 'CakeAdmin: authentication, authorization and role management
     <?php
         echo $this->Html->css([
             /*Bootstrap*/
-            'Cakeadmin.vendors/bootstrap/dist/css/bootstrap.min.css',
+            'CakeAdmin.vendors/bootstrap/dist/css/bootstrap.min.css',
             /*Font Awesome*/
-            'Cakeadmin.vendors/font-awesome/css/font-awesome.min.css',
+            'CakeAdmin.vendors/font-awesome/css/font-awesome.min.css',
             /*NProgress*/
-            'Cakeadmin.vendors/nprogress/nprogress.css',
+            'CakeAdmin.vendors/nprogress/nprogress.css',
             /*Custom Theme Style*/
-            'Cakeadmin.build/css/custom.min.css'
+            'CakeAdmin.build/css/custom.min.css'
         ]);
     ?>
 
@@ -72,18 +72,17 @@ $cakeDescription = 'CakeAdmin: authentication, authorization and role management
     <?php
         echo $this->Html->script([
             /*jQuery*/
-            'Cakeadmin.vendors/jquery/dist/jquery.min.js',
+            'CakeAdmin.vendors/jquery/dist/jquery.min.js',
             /*Bootstrap*/
-            'Cakeadmin.vendors/bootstrap/dist/js/bootstrap.min.js',
+            'CakeAdmin.vendors/bootstrap/dist/js/bootstrap.min.js',
             /*FastClick*/
-            'Cakeadmin.vendors/fastclick/lib/fastclick.js',
+            'CakeAdmin.vendors/fastclick/lib/fastclick.js',
             /*NProgress*/
-            'Cakeadmin.vendors/nprogress/nprogress.js',
+            'CakeAdmin.vendors/nprogress/nprogress.js',
             /*Validator*/
-            'Cakeadmin.vendors/validator/validator.js',
+            'CakeAdmin.vendors/validator/validator.js',
             /*Custom Theme Scripts*/
-            'Cakeadmin.build/js/custom.min.js',
-            '',
+            'CakeAdmin.build/js/custom.min.js'
         ]);
     ?>
     <?php echo $this->fetch('footerScript') ?>
