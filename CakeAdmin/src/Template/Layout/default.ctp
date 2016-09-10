@@ -35,7 +35,8 @@ $cakeDescription = 'CakeAdmin: authentication, authorization and role management
             /*NProgress*/
             'CakeAdmin.vendors/nprogress/nprogress.css',
             /*Custom Theme Style*/
-            'CakeAdmin.build/css/custom.min.css'
+            'CakeAdmin.build/css/custom.min.css',
+            'CakeAdmin.custom.css',
         ]);
     ?>
 

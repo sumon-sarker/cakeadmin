@@ -1,0 +1,43 @@
+.site_title i{
+	border: none;
+}
+.profile_details .img-circle{
+	max-width: 100px;
+	margin: auto;
+}
+.user_profile_list .panel_toolbox > li > a{
+	color: #73879C;
+}
+.user_profile_list .open > .dropdown-menu{
+	left: auto;
+	right: 0;
+}
+.profile_view .label{
+	position: absolute;
+	right: 14px;
+	top: 5px;
+}
+.sidebar_profile .profile_pic{
+	width: 100%;
+}
+.sidebar_profile .profile_pic .profile_img{
+	max-width: 100px;
+	margin: auto;
+}
+.sidebar_profile .profile_info{
+	width: 100%;
+	margin: 0;
+	padding: 0px;
+}
+#invisible{
+	visibility: hidden;
+}
+body.nav-sm .sidebar_profile{
+	display: none;
+}
+#sidebar-menu .top-border{
+	border-top: 2px solid white;
+}
+body.nav-sm .top-border{
+	border-top: none !important;
+}
