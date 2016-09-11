@@ -147,6 +147,7 @@
                   </li>
                   <li><a><i class="fa fa-cogs"></i> Settings <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
+                      <li><a href="#">Site Config</a></li>
                       <li><a href="#">Sidebar</a></li>
                       <li><a href="#">Header</a></li>
                       <li><a href="#">Footer</a></li>
@@ -155,12 +156,12 @@
                 </ul>
               </div>
               <div class="menu_section">
-                <h3>Scan</h3>
+                <h3>Synchronizer</h3>
                 <ul class="nav side-menu">
                   <li>
                     <?php
                       echo $this->Html->link(
-                        '<i class="fa fa-refresh"></i>'.__('Scan New Permissions'),
+                        '<i class="fa fa-adjust"></i>'.__('Synchronize Actions'),
                         array(
                           'controller'=>'permissionScanner',
                           'action'=>'index'
@@ -179,9 +180,22 @@
 
             <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-              </a>
+              <?php
+                echo $this->Html->link(
+                  '<span class="fa fa-adjust" aria-hidden="true"></span>',
+                  array(
+                    'prefix'=>$CurrentLoggedInUser['prefix_routing'],
+                    'controller'=>'permissionScanner',
+                    'action'=>'index'
+                  ),
+                  array(
+                    'escape'=>false,
+                    'data-toggle'=>'tooltip',
+                    'data-placement'=>'top',
+                    'title'=>'Synchronize Actions',
+                  )
+                );
+              ?>
               <a data-toggle="tooltip" data-placement="top" title="FullScreen">
                 <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
               </a>
