@@ -32,6 +32,7 @@ class UsersController extends AppController{
                 ];
                 
                 $this->Auth->setUser($user);
+                $this->Flash->success(__('You have successfully logged in!'));
                 return $this->redirect($redirectUrl);
             } else {
                 $this->Flash->error(__('Username or password is incorrect'), [
@@ -81,7 +82,7 @@ class UsersController extends AppController{
         $this->render('dashboard');
     }
 
-    public function view($id = null){
+    public function profile($id = null){
         $user = $this->Users->get($id, [
             'contain' => ['UserGroups', 'LoginTokens', 'UserLogs']
         ]);
@@ -129,7 +130,7 @@ class UsersController extends AppController{
         return $this->render('add_step_one');
     }
 
-    public function edit($id = null){
+    /*public function edit($id = null){
         $user = $this->Users->get($id, [
             'contain' => []
         ]);
@@ -146,6 +147,27 @@ class UsersController extends AppController{
         $userGroups = $this->Users->UserGroups->find('list', ['limit' => 200]);
         $this->set(compact('user', 'userGroups'));
         $this->set('_serialize', ['user']);
+    }*/
+
+    public function edit($steps='add_invalid_step'){
+        switch ($steps) {
+            case 'step_one':
+                    return $this->step_one();
+                break;
+            case 'step_two':
+                    return $this->render('add_step_two');
+                break;
+            case 'step_three':
+                    return $this->render('add_step_three');
+                break;
+            case 'step_four':
+                    return $this->render('add_step_four');
+                break;
+            
+            default:
+                    #Keep silent Boss :D
+                break;
+        }
     }
 
     public function delete($id = null){

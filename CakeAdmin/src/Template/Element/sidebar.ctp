@@ -46,7 +46,7 @@
                   <li class="top-border">
                     <?php
                       echo $this->Html->link(
-                        '<i class="fa fa-windows"></i> Dashboard ',
+                        '<i class="fa fa-th-large"></i> Dashboard ',
                         array(
                           'controller'=>'users',
                           'action'=>'dashboard',
@@ -58,11 +58,60 @@
                       );
                     ?>
                   </li>
-                  <li><a><i class="fa fa-cogs"></i> Settings <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-cogs"></i> Edit Profile <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">Sidebar</a></li>
-                      <li><a href="#">Header</a></li>
-                      <li><a href="#">Footer</a></li>
+                      <li>
+                        <?php
+                          echo $this->Html->link(
+                            __('Update Informations').' <span class="pull-right fa fa-info-circle"></span>',
+                            array(
+                              'controller'=>'users',
+                              'action'=>'edit',
+                              'step_one'
+                            ),
+                            array(
+                              'escape'=>false
+                            )
+                          );
+                        ?>
+                      </li>
+                      <li>
+                        <?php
+                          echo $this->Html->link(
+                            __('Change Image').' <span class="pull-right fa fa-file-image-o"></span>',
+                            array(
+                              'controller'=>'users',
+                              'action'=>'edit',
+                              'step_two'
+                            ),
+                            array(
+                              'escape'=>false
+                            )
+                          );
+                        ?>
+                      </li>
+                      <li>
+                        <?php
+                          echo $this->Html->link(
+                            __('Change Password').' <span class="pull-right fa fa-lock"></span>',
+                            array(
+                              'controller'=>'users',
+                              'action'=>'edit',
+                              'step_three'
+                            ),
+                            array(
+                              'escape'=>false
+                            )
+                          );
+                        ?>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-wechat"></i> Messages <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="#">Unread Messages</a></li>
+                      <li><a href="#">All Messages</a></li>
+                      <li><a href="#">New Message</a></li>
                     </ul>
                   </li>
                 </ul>

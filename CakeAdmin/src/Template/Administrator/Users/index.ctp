@@ -45,7 +45,7 @@ function getActiveInaction($status=0){
                           <div class="well profile_view">
                             <div class="col-md-12 col-sm-12 col-xs-12">
                               <p>
-                              <span class="label label-info pull-left">User Group</span>
+                              <span class="label label-info pull-left"><?php echo $user->user_group->name ?></span>
                               <?php echo getActiveInaction($user->active); ?>
                             </p>
                             <hr/>

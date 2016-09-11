@@ -40,3 +40,6 @@ body.nav-sm .sidebar_profile{
 #wizard a.selected::before{
 	background-color: #1ABB9C;
 }
+.login_wrapper .animate{
+	position: relative;
+}
