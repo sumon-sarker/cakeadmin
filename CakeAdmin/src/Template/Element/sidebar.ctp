@@ -49,7 +49,7 @@
                         '<i class="fa fa-dashboard"></i> Dashboard ',
                         array(
                           'controller'=>'users',
-                          'action'=>'index'
+                          'action'=>'dashboard'
                         ),
                         array(
                           'escape'=>false
@@ -65,7 +65,8 @@
                             __('Add New User').' <span class="pull-right fa fa-plus-square"></span>',
                             array(
                               'controller'=>'users',
-                              'action'=>'add'
+                              'action'=>'add',
+                              'step_one'
                             ),
                             array(
                               'escape'=>false

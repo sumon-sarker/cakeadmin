@@ -36,3 +36,10 @@ body.nav-sm .sidebar_profile{
 body.nav-sm .top-border{
 	border-top: none !important;
 }
+#wizard a.selected .step_no,
+#wizard a.selected::before{
+	background-color: #1ABB9C;
+}
+#sidebar-menu li.current-page{
+	background-color: #1ABB9C;
+}

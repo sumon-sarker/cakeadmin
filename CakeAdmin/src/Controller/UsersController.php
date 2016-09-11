@@ -10,6 +10,23 @@ use CakeAdmin\Controller\AppController;
  */
 class UsersController extends AppController
 {
+    public function dashboard(){
+        $totalUsers     = $this->Users->find('all')->count();
+        $activeUsers    = $this->Users->find('all',
+            [
+                'conditions'=>[
+                    'Users.active'=>1
+                ]
+            ])->count();
+        $inactiveUsers    = $this->Users->find('all',
+            [
+                'conditions'=>[
+                    'Users.active'=>0
+                ]
+            ])->count();
+
+        $this->set(compact('totalUsers','activeUsers','inactiveUsers'));
+    }
 
     /**
      * Index method
@@ -49,8 +66,29 @@ class UsersController extends AppController
      *
      * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
      */
-    public function add()
-    {
+    public function add($steps='add_invalid_step'){
+        switch ($steps) {
+            case 'step_one':
+                    return $this->step_one();
+                break;
+            case 'step_two':
+                    return $this->render('add_step_two');
+                break;
+            case 'step_three':
+                    return $this->render('add_step_three');
+                break;
+            case 'step_four':
+                    return $this->render('add_step_four');
+                break;
+            
+            default:
+                    #Keep silent Boss :D
+                break;
+        }
+    }
+
+
+    protected function step_one(){
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->data);
@@ -64,7 +102,7 @@ class UsersController extends AppController
         }
         $userGroups = $this->Users->UserGroups->find('list', ['limit' => 200]);
         $this->set(compact('user', 'userGroups'));
-        $this->set('_serialize', ['user']);
+        return $this->render('add_step_one');
     }
 
     /**
