@@ -12,11 +12,6 @@
 	left: auto;
 	right: 0;
 }
-.profile_view .label{
-	position: absolute;
-	right: 14px;
-	top: 5px;
-}
 .sidebar_profile .profile_pic{
 	width: 100%;
 }
