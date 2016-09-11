@@ -43,3 +43,6 @@ body.nav-sm .sidebar_profile{
 .login_wrapper .animate{
 	position: relative;
 }
+#permission-scanner{
+	margin-top: 100px;
+}

@@ -162,7 +162,7 @@
                       echo $this->Html->link(
                         '<i class="fa fa-refresh"></i>'.__('Scan New Permissions'),
                         array(
-                          'controller'=>'userGroupPermissions',
+                          'controller'=>'permissionScanner',
                           'action'=>'index'
                         ),
                         array(
