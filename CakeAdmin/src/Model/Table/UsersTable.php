@@ -44,6 +44,7 @@ class UsersTable extends Table
 
         $this->belongsTo('UserGroups', [
             'foreignKey' => 'user_group_id',
+            'joinType' => 'INNER',
             'className' => 'CakeAdmin.UserGroups'
         ]);
         $this->hasMany('LoginTokens', [
@@ -79,12 +80,18 @@ class UsersTable extends Table
             ->add('username', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
-            ->allowEmpty('password');
-
-        $validator
             ->email('email')
             ->allowEmpty('email')
             ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+
+        $validator
+            ->allowEmpty('password');
+
+        $validator
+            ->allowEmpty('designation');
+
+        $validator
+            ->allowEmpty('phone');
 
         $validator
             ->allowEmpty('verification_token');

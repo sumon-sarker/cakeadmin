@@ -11,8 +11,10 @@ use Cake\ORM\Entity;
  * @property string $first_name
  * @property string $last_name
  * @property string $username
- * @property string $password
  * @property string $email
+ * @property string $password
+ * @property string $designation
+ * @property string $phone
  * @property string $verification_token
  * @property int $email_verified
  * @property int $registration_step
@@ -49,8 +51,4 @@ class User extends Entity
     protected $_hidden = [
         'password'
     ];
-
-    protected function _getFullName(){
-        return $this->first_name .' '. $this->last_name;
-    }
 }

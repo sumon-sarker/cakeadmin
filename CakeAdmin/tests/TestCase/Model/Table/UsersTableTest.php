@@ -26,6 +26,7 @@ class UsersTableTest extends TestCase
     public $fixtures = [
         'plugin.cake_admin.users',
         'plugin.cake_admin.user_groups',
+        'plugin.cake_admin.user_group_permissions',
         'plugin.cake_admin.login_tokens',
         'plugin.cake_admin.user_logs'
     ];
