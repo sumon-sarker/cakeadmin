@@ -3,13 +3,61 @@ namespace CakeAdmin\Controller;
 
 use CakeAdmin\Controller\AppController;
 
-/**
- * Users Controller
- *
- * @property \CakeAdmin\Model\Table\UsersTable $Users
- */
-class UsersController extends AppController
-{
+class UsersController extends AppController{
+
+    public function login(){
+        
+        $this->ViewBuilder()->layout('login');
+
+        if ($this->request->is('post')) {
+            $user = $this->Auth->identify();
+            if ($user) {
+                $users  = $this->Users->find(
+                    'all',
+                    [
+                        'contain'=>[
+                            'UserGroups'
+                        ]
+                    ])->where(['Users.id'=>$user['id']])->first();
+
+                $user['prefix_routing'] = false;
+                if ($users->user_group->plugin_prefix) {
+                    $user['prefix_routing'] = $users->user_group->plugin_prefix;
+                }
+
+                $redirectUrl = [
+                    'prefix'=>$user['prefix_routing'],
+                    'controller'=>'users',
+                    'action'=>'dashboard',
+                ];
+                
+                $this->Auth->setUser($user);
+                return $this->redirect($redirectUrl);
+            } else {
+                $this->Flash->error(__('Username or password is incorrect'), [
+                'key' => 'auth'
+                ]);
+            }
+        }
+    }
+
+    public function logout(){
+        $this->Flash->success('You are now logged out.');
+        return $this->redirect($this->Auth->logout());
+    }
+
+    public function beforeSave(Event $event){
+        /*$entity = $event->data['entity'];
+        if ($entity->isNew()) {
+            $hasher = (new DefaultPasswordHasher())->hash($entity);
+        }
+        return true;*/
+    }
+
+    public function accessDeny(){
+        
+    }
+
     public function dashboard(){
         $totalUsers     = $this->Users->find('all')->count();
         $activeUsers    = $this->Users->find('all',
@@ -28,31 +76,12 @@ class UsersController extends AppController
         $this->set(compact('totalUsers','activeUsers','inactiveUsers'));
     }
 
-    /**
-     * Index method
-     *
-     * @return \Cake\Network\Response|null
-     */
-    public function index()
-    {
-        $this->paginate = [
-            'contain' => ['UserGroups']
-        ];
-        $users = $this->paginate($this->Users);
-
-        $this->set(compact('users'));
-        $this->set('_serialize', ['users']);
+    public function index(){
+        $this->dashboard();
+        $this->render('dashboard');
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Network\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
+    public function view($id = null){
         $user = $this->Users->get($id, [
             'contain' => ['UserGroups', 'LoginTokens', 'UserLogs']
         ]);
@@ -61,11 +90,6 @@ class UsersController extends AppController
         $this->set('_serialize', ['user']);
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
-     */
     public function add($steps='add_invalid_step'){
         switch ($steps) {
             case 'step_one':
@@ -105,15 +129,7 @@ class UsersController extends AppController
         return $this->render('add_step_one');
     }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function edit($id = null)
-    {
+    public function edit($id = null){
         $user = $this->Users->get($id, [
             'contain' => []
         ]);
@@ -132,15 +148,7 @@ class UsersController extends AppController
         $this->set('_serialize', ['user']);
     }
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Network\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
+    public function delete($id = null){
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);
         if ($this->Users->delete($user)) {

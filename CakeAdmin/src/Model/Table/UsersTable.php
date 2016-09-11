@@ -5,6 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Auth\DefaultPasswordHasher;
 
 /**
  * Users Model
@@ -126,5 +127,9 @@ class UsersTable extends Table
         $rules->add($rules->existsIn(['user_group_id'], 'UserGroups'));
 
         return $rules;
+    }
+
+    public function getHashPassword($string='default'){
+        return (new DefaultPasswordHasher())->hash($string);
     }
 }
