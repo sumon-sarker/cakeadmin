@@ -12,11 +12,11 @@
                       echo $this->Html->image(
                         'CakeAdmin.users/img.jpg',
                         array(
-                          'alt'=>$CurrentLoggedInUser['first_name']
+                          'alt'=>$CakeAdminUser['first_name']
                         )
                       )
                     ?>
-                    <?php echo $CurrentLoggedInUser['first_name'] .' '. $CurrentLoggedInUser['last_name'] ?>
+                    <?php echo $CakeAdminUser['first_name'] .' '. $CakeAdminUser['last_name'] ?>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -27,7 +27,7 @@
                           array(
                             'controller'=>'users',
                             'action'=>'view',
-                            $CurrentLoggedInUser['id']
+                            $CakeAdminUser['id']
                           )
                         );
                       ?>

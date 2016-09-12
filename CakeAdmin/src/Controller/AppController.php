@@ -43,7 +43,7 @@ class AppController extends BaseController{
 				);
 			}
 			/*Public Variable for VIEW*/
-			$this->set('CurrentLoggedInUser',$user);
+			$this->set('CakeAdminUser',$user);
 
 			/*For Inactive Users*/
 			if (!$user['active']) {

@@ -6,7 +6,7 @@
                   array(
                     'controller'=>'users',
                     'action'=>'dashboard',
-                    'prefix'=>$CurrentLoggedInUser['prefix_routing']
+                    'prefix'=>$CakeAdminUser['prefix_routing']
                   ),
                   array(
                     'escape'=>false,
@@ -18,7 +18,7 @@
 
             <div class="clearfix"></div>
             <!-- SIDEBAR PHOTO -->
-            <?php if($CurrentLoggedInUser['sidebar_photo']){ ?>
+            <?php if($CakeAdminUser['sidebar_photo']){ ?>
               <div class="sidebar_profile">
                 <div class="profile_pic text-center">
                   <?php
@@ -26,13 +26,13 @@
                       'CakeAdmin.users/img.jpg',
                       array(
                         'class'=>'img-circle profile_img',
-                        'alt'=>$CurrentLoggedInUser['first_name']
+                        'alt'=>$CakeAdminUser['first_name']
                       )
                     )
                   ?>
                   <div class="profile_info">
                     <span>Welcome,</span>
-                    <h2><?php echo $CurrentLoggedInUser['first_name'] .' '. $CurrentLoggedInUser['last_name'] ?></h2>
+                    <h2><?php echo $CakeAdminUser['first_name'] .' '. $CakeAdminUser['last_name'] ?></h2>
                   </div>
                 </div>
               </div>
@@ -41,7 +41,7 @@
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                <h3 id="invisible"><?php echo $CurrentLoggedInUser['first_name'] .' '. $CurrentLoggedInUser['last_name'] ?></h3>
+                <h3 id="invisible"><?php echo $CakeAdminUser['first_name'] .' '. $CakeAdminUser['last_name'] ?></h3>
                 <ul class="nav side-menu">
                   <li class="top-border">
                     <?php
@@ -50,7 +50,7 @@
                         array(
                           'controller'=>'users',
                           'action'=>'dashboard',
-                          'prefix'=>$CurrentLoggedInUser['prefix_routing']
+                          'prefix'=>$CakeAdminUser['prefix_routing']
                         ),
                         array(
                           'escape'=>false
