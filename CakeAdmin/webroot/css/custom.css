@@ -50,3 +50,28 @@ body.nav-sm .sidebar_profile{
 	background-color: #2A3F54;
 	color: white;
 }
+.tile-stats{
+	padding-bottom: 0px;
+}
+.tile-stats p{
+	background: #1ABB9C;
+	padding: 5px 0px;
+	margin: 10px 0px 0px 0px;
+	color: white;
+	text-align: center;
+}
+#user-groups-index .user-group-image{
+	font-size: 50px;
+	margin-top: 10px;
+}
+#user-groups-index .thumbnail .image{
+	background-color: #2A3F54;
+	color: white;
+}
+#user-groups-index .thumbnail .links .label{
+	margin: 0px 4px;
+}
+#user-groups-index .thumbnail .caption p strong{
+	width: 80px;
+	display: inline-block;
+}
