@@ -24,6 +24,9 @@ class AppController extends BaseController{
 			'storage' => 'Session'
 		]);
 
+		/*Allow without Login*/
+		$this->Auth->allow(['login','signup','passwordRecovery']);
+
 		/*Grant User for Prefix*/
 		$this->GrantPrefixPermission();
 	}

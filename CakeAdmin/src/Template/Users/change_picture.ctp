@@ -77,8 +77,7 @@
                               </span>',
                               array(
                                 'controller'=>'users',
-                                'action'=>'add',
-                                'step_four'
+                                'action'=>'changePicture'
                               ),
                               array(
                                 'escape'=>false,
@@ -91,30 +90,31 @@
                     </div>
                     <!-- End SmartWizard Content -->
 
-                    <?= $this->Form->create($user,['class'=>"form-horizontal form-label-left",'novalidate'=>true]) ?>
+                    <div class="ln_solid"></div>
+                    
+                    <div class="clearfix"></div>
 
-                      <div class="ln_solid"></div>
-                      <div class="item form-group">
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                          <?= $this->Form->input('old_password',['class'=>'form-control col-md-7 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2']); ?>
-                        </div>
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                          <?= $this->Form->input('new_password',['class'=>'form-control col-md-7 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2']); ?>
-                        </div>
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                          <?= $this->Form->input('confirm_new_password',['class'=>'form-control col-md-7 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2']); ?>
+                    <div class="row">
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                          <div class="x_content">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <?php echo $this->Html->image('CakeAdmin.users/img.jpg') ?>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                              <div class="dropzone" action="<?php echo $this->request->here ?>"></div>
+                            </div>
+                          </div>
                         </div>
                       </div>
-
-                      <div class="ln_solid"></div>
-                      <div class="form-group">
-                        <div class="col-md-12 col-sm-12 col-xs-12 text-right">
-                          <?= $this->Form->button(__('Update'),array('type'=>'submit','id'=>'send','class'=>'btn btn-success')) ?>
-                        </div>
+                      <div class="col-md-12 col-sm-12 col-xs-12 text-right">
+                        <button type="submit" class="btn btn-success">Save Changes</button>
                       </div>
-                    <?= $this->Form->end() ?>
-
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+
+<?php echo $this->Html->css('CakeAdmin.vendors/dropzone/dist/min/dropzone.min',['inline'=>'false']) ?>
+<?php echo $this->Html->script('CakeAdmin.vendors/dropzone/dist/min/dropzone.min',['block'=>'footerScript']) ?>

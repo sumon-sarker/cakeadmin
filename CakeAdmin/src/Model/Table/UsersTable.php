@@ -126,6 +126,8 @@ class UsersTable extends Table
 
     public function beforeSave(Event $event){
         if (isset($event->data['entity']->password)) {
+            return false;
+            var_dump($event->data); die();
             $event->data['entity']->password = (new DefaultPasswordHasher())->hash($event->data['entity']->password);
         }
     }

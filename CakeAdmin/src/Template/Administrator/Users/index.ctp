@@ -53,7 +53,7 @@ function getActiveInaction($status=0){
                             <div class="col-xs-12 col-md-4">
                               <?php
                                 echo $this->Html->image(
-                                  'CakeAdmin.users/img.jpg',
+                                  'CakeAdmin.'.$user->photo,
                                   array(
                                     'class'=>'img-circle img-responsive',
                                     'alt'=>$user->full_name,

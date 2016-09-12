@@ -2,26 +2,18 @@
           <?php echo $this->Flash->render('auth'); ?>
           <section class="login_content">
             <?php echo $this->Form->create() ?>
-              <h1>User Login</h1>
+              <h1>Password Recover</h1>
                 <?php
                   echo $this->Form->input('email',[
-                    'placeholder'=>'Email',
+                    'placeholder'=>'Enter your registered email',
                     'label'=>false,
                     'class'=>'form-control',
                     'autofocus'=>true
                     ]
                   );
-
-                  echo $this->Form->input('password',[
-                    'placeholder'=>'Password',
-                    'label'=>false,
-                    'class'=>'form-control'
-                    ]
-                  );
                 ?>
               <div>
-                <?php echo $this->Html->link('Lost your password?',['controller'=>'users','action'=>'passwordRecovery'],['class'=>'pull-left']) ?>
-                <input class="btn btn-success pull-right" value="Log in" type="submit">
+                <input class="btn btn-success pull-right" value="Ger recovery link" type="submit">
               </div>
 
               <div class="clearfix"></div>

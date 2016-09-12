@@ -22,7 +22,7 @@
                 <div class="profile_pic text-center">
                   <?php
                     echo $this->Html->image(
-                      'CakeAdmin.users/img.jpg',
+                      'CakeAdmin.'.$CakeAdminUser['photo'],
                       array(
                         'class'=>'img-circle profile_img',
                         'alt'=>$CakeAdminUser['first_name']

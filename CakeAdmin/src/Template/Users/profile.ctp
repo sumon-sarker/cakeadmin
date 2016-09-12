@@ -27,7 +27,7 @@
                           <!-- Current avatar -->
                           <?php
                             echo $this->Html->image(
-                              'CakeAdmin.users/img.jpg',
+                              'CakeAdmin.'.$user->photo,
                               array(
                                 'class'=>'img-responsive avatar-view',
                                 'alt'=>$user->first_name
