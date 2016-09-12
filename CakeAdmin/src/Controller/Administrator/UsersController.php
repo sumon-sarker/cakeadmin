@@ -54,7 +54,7 @@ class UsersController extends AppController
     public function view($id = null)
     {
         $user = $this->Users->get($id, [
-            'contain' => ['UserGroups', 'LoginTokens', 'UserLogs']
+            'contain' => ['UserGroups']
         ]);
 
         $this->set('user', $user);
@@ -66,47 +66,7 @@ class UsersController extends AppController
      *
      * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
      */
-    public function add($steps='add_invalid_step'){
-        switch ($steps) {
-            case 'step_one':
-                    return $this->step_one();
-                break;
-            case 'step_two':
-                    return $this->step_two();
-                break;
-            case 'step_three':
-                    return $this->step_three();
-                break;
-            case 'step_four':
-                    return $this->step_four();
-                break;
-            
-            default:
-                    #Keep silent Boss :D
-                break;
-        }
-    }
-
-
-    protected function step_one(){
-        $user = $this->Users->newEntity();
-        if ($this->request->is('post')) {
-            $this->request->data['password'] = $this->Users->getHashPassword($this->request->data['password']);
-            $user = $this->Users->patchEntity($user, $this->request->data);
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The user could not be saved. Please, try again.'));
-            }
-        }
-        $userGroups = $this->Users->UserGroups->find('list', ['limit' => 200]);
-        $this->set(compact('user', 'userGroups'));
-        return $this->render('add_step_one');
-    }
-
-    protected function step_two(){
+    public function add(){
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->data);
@@ -120,41 +80,6 @@ class UsersController extends AppController
         }
         $userGroups = $this->Users->UserGroups->find('list', ['limit' => 200]);
         $this->set(compact('user', 'userGroups'));
-        return $this->render('add_step_one');
-    }
-
-    protected function step_three(){
-        $user = $this->Users->newEntity();
-        if ($this->request->is('post')) {
-            $user = $this->Users->patchEntity($user, $this->request->data);
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The user could not be saved. Please, try again.'));
-            }
-        }
-        $userGroups = $this->Users->UserGroups->find('list', ['limit' => 200]);
-        $this->set(compact('user', 'userGroups'));
-        return $this->render('add_step_one');
-    }
-
-    protected function step_four(){
-        $user = $this->Users->newEntity();
-        if ($this->request->is('post')) {
-            $user = $this->Users->patchEntity($user, $this->request->data);
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The user could not be saved. Please, try again.'));
-            }
-        }
-        $userGroups = $this->Users->UserGroups->find('list', ['limit' => 200]);
-        $this->set(compact('user', 'userGroups'));
-        return $this->render('add_step_one');
     }
 
     /**

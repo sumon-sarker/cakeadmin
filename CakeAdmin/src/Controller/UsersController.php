@@ -84,7 +84,7 @@ class UsersController extends AppController{
 
     public function profile($id = null){
         $user = $this->Users->get($id, [
-            'contain' => ['UserGroups', 'LoginTokens', 'UserLogs']
+            'contain' => ['UserGroups']
         ]);
 
         $this->set('user', $user);

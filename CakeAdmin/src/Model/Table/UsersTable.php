@@ -6,7 +6,7 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 use Cake\Auth\DefaultPasswordHasher;
-
+use Cake\Event\Event;
 /**
  * Users Model
  *
@@ -48,14 +48,6 @@ class UsersTable extends Table
             'joinType' => 'INNER',
             'className' => 'CakeAdmin.UserGroups'
         ]);
-        $this->hasMany('LoginTokens', [
-            'foreignKey' => 'user_id',
-            'className' => 'CakeAdmin.LoginTokens'
-        ]);
-        $this->hasMany('UserLogs', [
-            'foreignKey' => 'user_id',
-            'className' => 'CakeAdmin.UserLogs'
-        ]);
     }
 
     /**
@@ -71,22 +63,25 @@ class UsersTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->allowEmpty('first_name');
+            ->requirePresence('first_name','create')
+            ->notEmpty('first_name');
 
         $validator
             ->allowEmpty('last_name');
 
         $validator
-            ->allowEmpty('username')
+            ->notEmpty('username')
             ->add('username', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
             ->email('email')
-            ->allowEmpty('email')
+            ->notEmpty('email')
+            ->requirePresence('email','create')
             ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
-            ->allowEmpty('password');
+            ->requirePresence('password','create')
+            ->notEmpty('password');
 
         $validator
             ->allowEmpty('designation');
@@ -129,7 +124,9 @@ class UsersTable extends Table
         return $rules;
     }
 
-    public function getHashPassword($string='default'){
-        return (new DefaultPasswordHasher())->hash($string);
+    public function beforeSave(Event $event){
+        if (isset($event->data['entity']->password)) {
+            $event->data['entity']->password = (new DefaultPasswordHasher())->hash($event->data['entity']->password);
+        }
     }
 }

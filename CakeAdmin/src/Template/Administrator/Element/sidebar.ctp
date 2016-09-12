@@ -64,8 +64,7 @@
                             __('Add User').' <span class="pull-right fa fa-plus-square"></span>',
                             array(
                               'controller'=>'users',
-                              'action'=>'add',
-                              'step_one'
+                              'action'=>'add'
                             ),
                             array(
                               'escape'=>false
@@ -156,12 +155,11 @@
                 </ul>
               </div>
               <div class="menu_section">
-                <h3>Synchronizer</h3>
                 <ul class="nav side-menu">
                   <li>
                     <?php
                       echo $this->Html->link(
-                        '<i class="fa fa-adjust"></i>'.__('Synchronize Actions'),
+                        '<i class="fa fa-adjust"></i>'.__('Synchronizer'),
                         array(
                           'controller'=>'permissionScanner',
                           'action'=>'index'
@@ -192,7 +190,7 @@
                     'escape'=>false,
                     'data-toggle'=>'tooltip',
                     'data-placement'=>'top',
-                    'title'=>'Synchronize Actions',
+                    'title'=>'Synchronizer',
                   )
                 );
               ?>

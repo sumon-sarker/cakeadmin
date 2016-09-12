@@ -64,7 +64,8 @@ class UserGroupsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->allowEmpty('name');
+            ->requirePresence('name','create')
+            ->notEmpty('name');
 
         $validator
             ->allowEmpty('alias_name');

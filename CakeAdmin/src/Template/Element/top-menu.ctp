@@ -26,7 +26,8 @@
                           'Profile',
                           array(
                             'controller'=>'users',
-                            'action'=>'index'
+                            'action'=>'profile',
+                            $CurrentLoggedInUser['id']
                           )
                         );
                       ?>

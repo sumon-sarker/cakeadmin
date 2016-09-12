@@ -117,18 +117,17 @@ function getActiveInaction($status=0){
                         </div>
                       <?php } ?>
                     </div>
+                    <div class="row">
+                      <div class="paginator">
+                          <ul class="pagination">
+                              <?= $this->Paginator->prev('&laquo; ' . __(''),array('escape'=>false)) ?>
+                              <?= $this->Paginator->numbers() ?>
+                              <?= $this->Paginator->next(__('') . ' &raquo;',array('escape'=>false)) ?>
+                          </ul>
+                          <p>Showing <?= $this->Paginator->counter() ?></p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-
-              <div class="col-md-12">
-                <div class="paginator">
-                    <p>Showing <?= $this->Paginator->counter() ?></p>
-                    <ul class="pagination">
-                        <?= $this->Paginator->prev('&laquo; ' . __(''),array('escape'=>false)) ?>
-                        <?= $this->Paginator->numbers() ?>
-                        <?= $this->Paginator->next(__('') . ' &raquo;',array('escape'=>false)) ?>
-                    </ul>
                 </div>
               </div>
             </div>
