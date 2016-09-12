@@ -6,19 +6,8 @@
 ?>
 <div class="userGroupPermissions ">
     <div class="page-title">
-      <div class="title_left">
+      <div class="x_panel">
         <h3><?= __('Add User Group Permission') ?></h3>
-      </div>
-
-      <div class="title_right">
-        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for...">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Search</button>
-            </span>
-          </div>
-        </div>
       </div>
     </div>
     <div class="clearfix"></div>
