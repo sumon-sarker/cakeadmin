@@ -40,6 +40,25 @@
                           <?= $this->Form->input('email',['class'=>'form-control col-md-7 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2']); ?>
                         </div>
                       </div>
+
+                      <div class="item form-group">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                          <?= $this->Form->input('designation',['class'=>'form-control col-md-7 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2']); ?>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                          <?= $this->Form->input('phone',['class'=>'form-control col-md-7 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2']); ?>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                          <?= $this->Form->input('website',['class'=>'form-control col-md-7 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2']); ?>
+                        </div>
+                      </div>
+
+                      <div class="item form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                          <?= $this->Form->input('address',['class'=>'form-control col-md-12 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2']); ?>
+                        </div>
+                      </div>
+
                       <div class="item form-group">
                         <div class="col-md-4 col-sm-4 col-xs-12">
                           <?= $this->Form->input('verification_token',['class'=>'form-control col-md-7 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2']); ?>

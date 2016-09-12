@@ -44,6 +44,14 @@ class AppController extends BaseController{
 			}
 			/*Public Variable for VIEW*/
 			$this->set('CurrentLoggedInUser',$user);
+
+			/*For Inactive Users*/
+			if (!$user['active']) {
+				if ($this->request->params['action']!='accessDeny') {
+					$this->Flash->error(__('Your account is currently inactive!'));
+					return $this->redirect(['prefix'=>false,'controller'=>'users','action'=>'accessDeny']);
+				}
+			}
 		}
 	}
 }

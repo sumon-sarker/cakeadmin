@@ -83,20 +83,22 @@ function getActiveInaction($status=0){
                                 ?>
 
                                 <?php
-                                  echo $this->Form->postLink(
-                                    '<i class="fa fa-remove"> </i> '.__('Delete'),
-                                    array(
-                                      'action' => 'delete',
-                                      $user->id
-                                    ),
-                                    array(
-                                      'confirm'=>__('Are you sure you want to delete # {0}?',
+                                  if ($user->user_group->plugin_prefix!='administrator') {
+                                    echo $this->Form->postLink(
+                                      '<i class="fa fa-remove"> </i> '.__('Delete'),
+                                      array(
+                                        'action' => 'delete',
                                         $user->id
                                       ),
-                                      'class'=>'btn btn-danger btn-xs',
-                                      'escape'=>false
-                                    )
-                                  )
+                                      array(
+                                        'confirm'=>__('Are you sure you want to delete # {0}?',
+                                          $user->id
+                                        ),
+                                        'class'=>'btn btn-danger btn-xs',
+                                        'escape'=>false
+                                      )
+                                    );
+                                  }
                                 ?>
 
                                 <?php

@@ -159,7 +159,7 @@
                   <li>
                     <?php
                       echo $this->Html->link(
-                        '<i class="fa fa-adjust"></i>'.__('Synchronizer'),
+                        '<i class="fa fa-adjust"></i>'.__('Permission Synchronizer'),
                         array(
                           'controller'=>'permissionScanner',
                           'action'=>'index'
@@ -190,7 +190,7 @@
                     'escape'=>false,
                     'data-toggle'=>'tooltip',
                     'data-placement'=>'top',
-                    'title'=>'Synchronizer',
+                    'title'=>'Permission Synchronizer',
                   )
                 );
               ?>

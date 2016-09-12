@@ -7,7 +7,8 @@
                   echo $this->Form->input('email',[
                     'placeholder'=>'Email',
                     'label'=>false,
-                    'class'=>'form-control'
+                    'class'=>'form-control',
+                    'autofocus'=>true
                     ]
                   );
 

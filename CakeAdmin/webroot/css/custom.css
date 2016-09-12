@@ -75,3 +75,6 @@ body.nav-sm .sidebar_profile{
 	width: 80px;
 	display: inline-block;
 }
+.flash-black-border{
+	border-color: black;
+}
