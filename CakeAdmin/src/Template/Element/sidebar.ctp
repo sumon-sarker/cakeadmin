@@ -66,8 +66,7 @@
                             __('Update Informations').' <span class="pull-right fa fa-info-circle"></span>',
                             array(
                               'controller'=>'users',
-                              'action'=>'edit',
-                              'step_one'
+                              'action'=>'editInformations'
                             ),
                             array(
                               'escape'=>false
@@ -78,11 +77,10 @@
                       <li>
                         <?php
                           echo $this->Html->link(
-                            __('Change Image').' <span class="pull-right fa fa-file-image-o"></span>',
+                            __('Change Email').' <span class="pull-right fa fa-file-image-o"></span>',
                             array(
                               'controller'=>'users',
-                              'action'=>'edit',
-                              'step_two'
+                              'action'=>'changeEmail'
                             ),
                             array(
                               'escape'=>false
@@ -96,8 +94,21 @@
                             __('Change Password').' <span class="pull-right fa fa-lock"></span>',
                             array(
                               'controller'=>'users',
-                              'action'=>'edit',
-                              'step_three'
+                              'action'=>'changePassword'
+                            ),
+                            array(
+                              'escape'=>false
+                            )
+                          );
+                        ?>
+                      </li>
+                      <li>
+                        <?php
+                          echo $this->Html->link(
+                            __('Change Picture').' <span class="pull-right fa fa-lock"></span>',
+                            array(
+                              'controller'=>'users',
+                              'action'=>'changePicture'
                             ),
                             array(
                               'escape'=>false

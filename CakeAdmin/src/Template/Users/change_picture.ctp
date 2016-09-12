@@ -22,13 +22,11 @@
                             echo $this->Html->link(
                               '<span class="step_no">1</span>
                               <span class="step_descr">
-                                  Step 1<br />
-                                  <small>Step 1 description</small>
+                                  <small>Update Informations</small>
                               </span>',
                               array(
                                 'controller'=>'users',
-                                'action'=>'add',
-                                'step_one'
+                                'action'=>'editInformations'
                               ),
                               array(
                                 'escape'=>false
@@ -41,13 +39,11 @@
                             echo $this->Html->link(
                               '<span class="step_no">2</span>
                               <span class="step_descr">
-                                  Step 2<br />
-                                  <small>Step 2 description</small>
+                                  <small>Change Email</small>
                               </span>',
                               array(
                                 'controller'=>'users',
-                                'action'=>'add',
-                                'step_two'
+                                'action'=>'changeEmail'
                               ),
                               array(
                                 'escape'=>false
@@ -60,13 +56,11 @@
                             echo $this->Html->link(
                               '<span class="step_no">3</span>
                               <span class="step_descr">
-                                  Step 3<br />
-                                  <small>Step 3 description</small>
+                                  <small>Change Password</small>
                               </span>',
                               array(
                                 'controller'=>'users',
-                                'action'=>'add',
-                                'step_three'
+                                'action'=>'changePassword'
                               ),
                               array(
                                 'escape'=>false
@@ -79,8 +73,7 @@
                             echo $this->Html->link(
                               '<span class="step_no">4</span>
                               <span class="step_descr">
-                                  Step 4<br />
-                                  <small>Step 4 description</small>
+                                  <small>Change Picture</small>
                               </span>',
                               array(
                                 'controller'=>'users',
@@ -98,6 +91,28 @@
                     </div>
                     <!-- End SmartWizard Content -->
 
+                    <?= $this->Form->create($user,['class'=>"form-horizontal form-label-left",'novalidate'=>true]) ?>
+
+                      <div class="ln_solid"></div>
+                      <div class="item form-group">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                          <?= $this->Form->input('old_password',['class'=>'form-control col-md-7 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2']); ?>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                          <?= $this->Form->input('new_password',['class'=>'form-control col-md-7 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2']); ?>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                          <?= $this->Form->input('confirm_new_password',['class'=>'form-control col-md-7 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2']); ?>
+                        </div>
+                      </div>
+
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-right">
+                          <?= $this->Form->button(__('Update'),array('type'=>'submit','id'=>'send','class'=>'btn btn-success')) ?>
+                        </div>
+                      </div>
+                    <?= $this->Form->end() ?>
 
                   </div>
                 </div>
