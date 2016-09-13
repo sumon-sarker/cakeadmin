@@ -5,9 +5,16 @@ namespace CakeAdmin\Controller;
 use App\Controller\AppController as BaseController;
 
 class AppController extends BaseController{
+
+	public $CakeAdminUser 		= null;
+
 	public function initialize(){
 		parent::initialize();
+		$this->InitializeAuthentication();
+		$this->GrantPrefixPermission();
+	}
 
+	protected function InitializeAuthentication(){
 		$this->loadComponent('Auth', [
 			'loginAction' => [
 				'controller' => 'Users',
@@ -23,12 +30,8 @@ class AppController extends BaseController{
 			],
 			'storage' => 'Session'
 		]);
-
 		/*Allow without Login*/
 		$this->Auth->allow(['login','signup','passwordRecovery']);
-
-		/*Grant User for Prefix*/
-		$this->GrantPrefixPermission();
 	}
 
 	protected function GrantPrefixPermission(){
@@ -46,8 +49,8 @@ class AppController extends BaseController{
 				);
 			}
 			/*Public Variable for VIEW*/
+			$this->CakeAdminUser = $user;
 			$this->set('CakeAdminUser',$user);
-
 			/*For Inactive Users*/
 			if (!$user['active']) {
 				if ($this->request->params['action']!='accessDeny') {
