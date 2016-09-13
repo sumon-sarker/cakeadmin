@@ -18,7 +18,13 @@ class UserGroupsController extends AppController
      */
     public function index()
     {
-        $userGroups = $this->paginate($this->UserGroups);
+        $userGroups = $this->paginate($this->UserGroups,[
+                'contain'=>[
+                    'UserGroupPermissions'=>[
+                        'fields'=>['user_group_id']
+                    ]
+                ]
+            ]);
 
         $this->set(compact('userGroups'));
         $this->set('_serialize', ['userGroups']);

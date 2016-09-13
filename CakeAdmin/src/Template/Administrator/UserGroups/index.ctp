@@ -19,14 +19,17 @@
                               <i class="user-group-image fa fa-users"></i>
                                 <h5><?= h($userGroup->name) ?></h5>
                                 <div class="links">
-                                  <?= $this->Html->link(
-                                    '<i class="fa fa-lock"></i> '.__('Permissions'),
-                                    ['action' => 'view', $userGroup->id],
-                                    [
-                                      'escape'=>false,
-                                      'class'=>'label label-info'
-                                    ]
-                                    )
+                                  <?php
+                                    if ($userGroup->plugin_prefix!='administrator') {
+                                      echo $this->Html->link(
+                                        '<i class="fa fa-lock"></i> '.__('Permissions'),
+                                        ['action' => 'view', $userGroup->id],
+                                        [
+                                          'escape'=>false,
+                                          'class'=>'label label-success'
+                                        ]
+                                        );
+                                    }
                                   ?>
                                   <?= $this->Html->link(
                                     '<i class="fa fa-pencil"></i>'.__('Edit'),
@@ -53,8 +56,17 @@
                                 </div>
                             </div>
                             <div class="caption">
-                              <p><strong>Controllers </strong><?= h($userGroup->name) ?></p>
-                              <p><strong>Actions </strong><?= h($userGroup->name) ?></p>
+                              <?php if ($userGroup->plugin_prefix=='administrator') { ?>
+                                <p>
+                                  <strong>Permissions </strong>
+                                  <span class="label label-info"><?= __('All') ?></span>
+                                </p>
+                              <?php }else{ ?>
+                                <p>
+                                  <strong>Permissions </strong>
+                                  <span class="label label-info"><?= count($userGroup->user_group_permissions) ?></span>
+                                </p>
+                              <?php } ?>
                             </div>
                           </div>
                         </div>

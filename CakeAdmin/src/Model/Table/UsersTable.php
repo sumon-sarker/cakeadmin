@@ -7,34 +7,10 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 use Cake\Auth\DefaultPasswordHasher;
 use Cake\Event\Event;
-/**
- * Users Model
- *
- * @property \Cake\ORM\Association\BelongsTo $UserGroups
- * @property \Cake\ORM\Association\HasMany $LoginTokens
- * @property \Cake\ORM\Association\HasMany $UserLogs
- *
- * @method \CakeAdmin\Model\Entity\User get($primaryKey, $options = [])
- * @method \CakeAdmin\Model\Entity\User newEntity($data = null, array $options = [])
- * @method \CakeAdmin\Model\Entity\User[] newEntities(array $data, array $options = [])
- * @method \CakeAdmin\Model\Entity\User|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \CakeAdmin\Model\Entity\User patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \CakeAdmin\Model\Entity\User[] patchEntities($entities, array $data, array $options = [])
- * @method \CakeAdmin\Model\Entity\User findOrCreate($search, callable $callback = null)
- *
- * @mixin \Cake\ORM\Behavior\TimestampBehavior
- */
-class UsersTable extends Table
-{
 
-    /**
-     * Initialize method
-     *
-     * @param array $config The configuration for the Table.
-     * @return void
-     */
-    public function initialize(array $config)
-    {
+class UsersTable extends Table{
+
+    public function initialize(array $config){
         parent::initialize($config);
 
         $this->table('users');
@@ -50,14 +26,7 @@ class UsersTable extends Table
         ]);
     }
 
-    /**
-     * Default validation rules.
-     *
-     * @param \Cake\Validation\Validator $validator Validator instance.
-     * @return \Cake\Validation\Validator
-     */
-    public function validationDefault(Validator $validator)
-    {
+    public function validationDefault(Validator $validator){
         $validator
             ->integer('id')
             ->allowEmpty('id', 'create');
@@ -81,6 +50,8 @@ class UsersTable extends Table
 
         $validator
             ->requirePresence('password','create')
+            ->lengthBetween('password',[6,16],'Password must be between 6 and 16')
+            ->alphaNumeric('password','Password must be alphaNumeric')
             ->notEmpty('password');
 
         $validator
@@ -105,16 +76,25 @@ class UsersTable extends Table
             ->requirePresence('active', 'create')
             ->notEmpty('active');
 
+        /*Dummy Fields*/
+        $validator
+            #->requirePresence('new_password','update')
+            ->lengthBetween('new_password',[6,16],'Password must be between 6 and 16')
+            ->sameAs('new_password', 'confirm_new_password','Password does not match!')
+            ->notEmpty('new_password');
+        $validator
+            #->requirePresence('confirm_new_password','update')
+            ->lengthBetween('confirm_new_password',[6,16],'Password must be between 6 and 16')
+            ->sameAs('confirm_new_password', 'new_password','Password does not match!')
+            ->notEmpty('confirm_new_password');
+
         return $validator;
     }
 
     /**
      * Returns a rules checker object that will be used for validating
      * application integrity.
-     *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
-     * @return \Cake\ORM\RulesChecker
-     */
+    **/
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['username']));
@@ -126,9 +106,10 @@ class UsersTable extends Table
 
     public function beforeSave(Event $event){
         if (isset($event->data['entity']->password)) {
-            #return false;
-            #var_dump($event->data); die();
-            $event->data['entity']->password = (new DefaultPasswordHasher())->hash($event->data['entity']->password);
+            $DPH = new DefaultPasswordHasher();
+            if ($DPH->needsRehash($event->data['entity']->password)) {
+                $event->data['entity']->password = $DPH->hash($event->data['entity']->password);
+            }
         }
     }
 }

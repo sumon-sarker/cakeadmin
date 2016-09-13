@@ -134,13 +134,16 @@ class UsersController extends AppController{
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
+            /*Add Password field*/
+            $this->request->data['password'] = $this->request->data['new_password'];
+
             $user = $this->Users->patchEntity($user, $this->request->data);
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('Password has been saved.'));
+                $this->Flash->success(__('Password has been updated.'));
 
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('Password could not be saved. Please, try again.'));
+                $this->Flash->error(__('Password could not be update. Please, try again.'));
             }
         }
         $this->set(compact('user'));

@@ -24,8 +24,14 @@ class UsersController extends AppController
                     'Users.active'=>0
                 ]
             ])->count();
+        $newSignUps    = $this->Users->find('all',
+            [
+                'conditions'=>[
+                    'Users.created like'=>date('Y-m-').'%'
+                ]
+            ])->count();
 
-        $this->set(compact('totalUsers','activeUsers','inactiveUsers'));
+        $this->set(compact('totalUsers','activeUsers','inactiveUsers','newSignUps'));
     }
 
     /**

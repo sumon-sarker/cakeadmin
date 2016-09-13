@@ -13,7 +13,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = 'CakeAdmin: authentication, authorization and role management plugin';
+$cakeDescription = 'CakeAdmin - authentication and authorization plugin ';
 ?>
 <!DOCTYPE html>
 <html>
@@ -64,7 +64,7 @@ $cakeDescription = 'CakeAdmin: authentication, authorization and role management
 
         <footer>
           <div class="pull-right">
-            Developed By - <a href="http://sumonsarker.com">Sumon Sarker</a>
+            CakeAdmin - Developed by <a class="label label-success" href="http://sumonsarker.com">Sumon Sarker</a>
           </div>
           <div class="clearfix"></div>
         </footer>

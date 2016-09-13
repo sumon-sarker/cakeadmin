@@ -111,14 +111,11 @@
 
                       <div class="ln_solid"></div>
                       <div class="item form-group">
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                          <?= $this->Form->input('old_password',['class'=>'form-control col-md-7 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2']); ?>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <?= $this->Form->input('new_password',['type'=>'password','class'=>'form-control col-md-7 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2']); ?>
                         </div>
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                          <?= $this->Form->input('new_password',['class'=>'form-control col-md-7 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2']); ?>
-                        </div>
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                          <?= $this->Form->input('confirm_new_password',['class'=>'form-control col-md-7 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2']); ?>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <?= $this->Form->input('confirm_new_password',['type'=>'password','class'=>'form-control col-md-7 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2']); ?>
                         </div>
                       </div>
 
