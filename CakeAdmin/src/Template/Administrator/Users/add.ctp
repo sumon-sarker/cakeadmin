@@ -1,11 +1,8 @@
 <div class="page-title">
-              <div class="title_left">
-                <h3><?= __('User Add') ?></h3>
+              <div class="x_panel">
+                <h3><?= __('Add User') ?></h3>
               </div>
-
-              <div class="title_right">
-                
-              </div>
+              <div class="title_right"></div>
             </div>
             <div class="clearfix"></div>
 
@@ -54,27 +51,17 @@
                       </div>
 
                       <div class="item form-group">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-md-8 col-sm-8 col-xs-12">
                           <?= $this->Form->input('address',['class'=>'form-control col-md-12 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2']); ?>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                          <?php
+                            $active = [0=>'No',1=>'Yes'];
+                            echo $this->Form->input('active',['class'=>'form-control col-md-7 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2','options'=>$active]);
+                          ?>
                         </div>
                       </div>
 
-                      <div class="item form-group">
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                          <?= $this->Form->input('verification_token',['class'=>'form-control col-md-7 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2']); ?>
-                        </div>
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                          <?= $this->Form->input('email_verified',['class'=>'form-control col-md-7 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2']); ?>
-                        </div>
-                        <div class="col-md-4 col-sm-4 col-xs-12">
-                          <?= $this->Form->input('registration_step',['class'=>'form-control col-md-7 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2']); ?>
-                        </div>
-                      </div>
-                      <div class="item form-group">
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <?= $this->Form->input('active',['class'=>'form-control col-md-7 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2']); ?>
-                        </div>
-                      </div>
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-12  col-sm-12  col-xs-12 text-right">

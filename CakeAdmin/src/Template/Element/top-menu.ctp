@@ -10,7 +10,7 @@
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                     <?php
                       echo $this->Html->image(
-                        'CakeAdmin.users/img.jpg',
+                        'CakeAdmin.'.$CakeAdminUser['photo'],
                         array(
                           'alt'=>$CakeAdminUser['first_name']
                         )
@@ -33,10 +33,18 @@
                       ?>
                     </li>
                     <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
+                      <?php
+                          echo $this->Html->link(
+                            '<i class="fa fa-cogs pull-right"></i> '.__('Settings'),
+                            array(
+                              'controller'=>'users',
+                              'action'=>'settings'
+                            ),
+                            array(
+                              'escape'=>false
+                            )
+                          );
+                        ?>
                     </li>
                     <li>
                       <?php

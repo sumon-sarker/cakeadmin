@@ -81,3 +81,7 @@ body.nav-sm .sidebar_profile{
 #wizard .wizard_steps{
 	padding-left: 0px;
 }
+.tile-stats h3{
+	font-size: 13px;
+	color: #5F5252;
+}

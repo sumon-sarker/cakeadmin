@@ -6,9 +6,10 @@
 ?>
 <div class="userGroups ">
     <div class="page-title">
-      <div class="col-xs-12">
+      <div class="x_panel">
         <h3><?= __('Edit User Group') ?></h3>
       </div>
+      <div class="title_right"></div>
     </div>
     <div class="clearfix"></div>
 
@@ -26,7 +27,10 @@
                   <?= $this->Form->input('alias_name',['class'=>'form-control col-md-7 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2']); ?>
                 </div>
                 <div class="col-md-4 col-sm-4 col-xs-12">
-                  <?= $this->Form->input('allowRegistration',['class'=>'form-control col-md-7 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2']); ?>
+                  <?php
+                    $allowRegistration = [0=>'No',1=>'Yes'];
+                    echo $this->Form->input('allow_registration',['class'=>'form-control col-md-7 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2','options'=>$allowRegistration]);
+                  ?>
                 </div>
               </div>
               <div class="ln_solid"></div>

@@ -28,7 +28,7 @@
                 <div <?= $display ?> class="profile_pic text-center">
                   <?php
                     echo $this->Html->image(
-                      'CakeAdmin.users/img.jpg',
+                      'CakeAdmin.'.$CakeAdminUser['photo'],
                       array(
                         'class'=>'img-circle profile_img',
                         'alt'=>$CakeAdminUser['first_name']
@@ -62,7 +62,7 @@
                       );
                     ?>
                   </li>
-                  <li><a><i class="fa fa-cogs"></i> Edit Profile <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-edit"></i> Edit Profile <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li>
                         <?php
@@ -81,7 +81,7 @@
                       <li>
                         <?php
                           echo $this->Html->link(
-                            __('Change Email').' <span class="pull-right fa fa-file-image-o"></span>',
+                            __('Change Email').' <span class="pull-right fa fa-envelope-o"></span>',
                             array(
                               'controller'=>'users',
                               'action'=>'changeEmail'
@@ -109,7 +109,7 @@
                       <li>
                         <?php
                           echo $this->Html->link(
-                            __('Change Picture').' <span class="pull-right fa fa-lock"></span>',
+                            __('Change Picture').' <span class="pull-right fa fa-file-image-o"></span>',
                             array(
                               'controller'=>'users',
                               'action'=>'changePicture'
@@ -123,7 +123,7 @@
                       <li>
                         <?php
                           echo $this->Html->link(
-                            __('Settings').' <span class="pull-right fa fa-lock"></span>',
+                            __('Settings').' <span class="pull-right fa fa-cogs"></span>',
                             array(
                               'controller'=>'users',
                               'action'=>'settings'

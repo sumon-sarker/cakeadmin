@@ -8,12 +8,9 @@ function getActiveInaction($status=0){
 }
 ?>
 <div class="page-title user_profile_list">
-              <div class="title_left">
-                <h3><i class="fa fa-users"></i> <?php echo __('All Users') ?></h3>
-              </div>
-
-              <div class="title_right">
-                <div class="col-md-6 col-sm-6 col-xs-12 form-group pull-right top_search">
+              <div class="x_panel">
+                <h3>
+                  <i class="fa fa-users"></i> <?php echo __('All Users') ?>
                   <ul class="nav navbar-right panel_toolbox">
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true"><i class="fa fa-sort"></i> <?= __('Sort By') ?></a>
@@ -24,11 +21,13 @@ function getActiveInaction($status=0){
                         <li><?= $this->Paginator->sort('username') ?></li>
                         <li><?= $this->Paginator->sort('created') ?></li>
                         <li><?= $this->Paginator->sort('modified') ?></li>
+                        <li><?= $this->Paginator->sort('active') ?></li>
                       </ul>
                     </li>
                   </ul>
-                </div>
+                </h3>
               </div>
+              <div class="title_right"></div>
             </div>
 
             <div class="clearfix"></div>
