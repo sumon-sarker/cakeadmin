@@ -20,11 +20,8 @@
 
             <?= $this->Form->create($userGroup,['class'=>"form-horizontal form-label-left",'novalidate'=>true]) ?>
               <div class="item form-group">
-                <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="col-md-8 col-sm-8 col-xs-12">
                   <?= $this->Form->input('name',['class'=>'form-control col-md-7 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2','label'=>'Group name']); ?>
-                </div>
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                  <?= $this->Form->input('alias_name',['class'=>'form-control col-md-7 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2']); ?>
                 </div>
                 <div class="col-md-4 col-sm-4 col-xs-12">
                   <?php
