@@ -105,8 +105,7 @@ class UsersController extends AppController{
                 $this->Flash->error(__('Information could not be saved. Please, try again.'));
             }
         }
-        $userGroups = $this->Users->UserGroups->find('list', ['limit' => 200]);
-        $this->set(compact('user', 'userGroups'));
+        $this->set(compact('user'));
         $this->set('_serialize', ['user']);
     }
 
@@ -125,8 +124,7 @@ class UsersController extends AppController{
                 $this->Flash->error(__('Email could not be saved. Please, try again.'));
             }
         }
-        $userGroups = $this->Users->UserGroups->find('list', ['limit' => 200]);
-        $this->set(compact('user', 'userGroups'));
+        $this->set(compact('user'));
         $this->set('_serialize', ['user']);
     }
 
@@ -145,8 +143,7 @@ class UsersController extends AppController{
                 $this->Flash->error(__('Password could not be saved. Please, try again.'));
             }
         }
-        $userGroups = $this->Users->UserGroups->find('list', ['limit' => 200]);
-        $this->set(compact('user', 'userGroups'));
+        $this->set(compact('user'));
         $this->set('_serialize', ['user']);
     }
 
@@ -165,8 +162,26 @@ class UsersController extends AppController{
                 $this->Flash->error(__('Email could not be saved. Please, try again.'));
             }
         }
-        $userGroups = $this->Users->UserGroups->find('list', ['limit' => 200]);
-        $this->set(compact('user', 'userGroups'));
+        $this->set(compact('user'));
+        $this->set('_serialize', ['user']);
+    }
+
+    public function settings(){
+        $user = $this->Auth->user();
+        $user = $this->Users->get($user['id'], [
+            'contain' => []
+        ]);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $user = $this->Users->patchEntity($user, $this->request->data);
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__('Settings has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            } else {
+                $this->Flash->error(__('Settings could not be saved. Please, try again.'));
+            }
+        }
+        $this->set(compact('user'));
         $this->set('_serialize', ['user']);
     }
 

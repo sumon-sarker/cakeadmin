@@ -1,6 +1,6 @@
 <div class="page-title">
               <div class="title_left">
-                <h3><?= __('Basic Information') ?></h3>
+                <h3><?= __('Change Password') ?></h3>
               </div>
 
               <div class="title_right">
@@ -22,7 +22,7 @@
                             echo $this->Html->link(
                               '<span class="step_no">1</span>
                               <span class="step_descr">
-                                  <small>Update Informations</small>
+                                  <small>Informations</small>
                               </span>',
                               array(
                                 'controller'=>'users',
@@ -39,7 +39,7 @@
                             echo $this->Html->link(
                               '<span class="step_no">2</span>
                               <span class="step_descr">
-                                  <small>Change Email</small>
+                                  <small>Email</small>
                               </span>',
                               array(
                                 'controller'=>'users',
@@ -56,7 +56,7 @@
                             echo $this->Html->link(
                               '<span class="step_no">3</span>
                               <span class="step_descr">
-                                  <small>Change Password</small>
+                                  <small>Password</small>
                               </span>',
                               array(
                                 'controller'=>'users',
@@ -74,11 +74,28 @@
                             echo $this->Html->link(
                               '<span class="step_no">4</span>
                               <span class="step_descr">
-                                  <small>Change Picture</small>
+                                  <small>Picture</small>
                               </span>',
                               array(
                                 'controller'=>'users',
                                 'action'=>'changePicture'
+                              ),
+                              array(
+                                'escape'=>false
+                              )
+                            );
+                          ?>
+                        </li>
+                        <li>
+                          <?php
+                            echo $this->Html->link(
+                              '<span class="step_no">4</span>
+                              <span class="step_descr">
+                                  <small>Settings</small>
+                              </span>',
+                              array(
+                                'controller'=>'users',
+                                'action'=>'settings'
                               ),
                               array(
                                 'escape'=>false

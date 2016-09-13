@@ -18,9 +18,14 @@
 
             <div class="clearfix"></div>
             <!-- SIDEBAR PHOTO -->
-            <?php if($CakeAdminUser['sidebar_photo']){ ?>
+            <?php
+              $display = '';
+              if(!$CakeAdminUser['sidebar_profile_photo']){
+                $display = 'style="display:none"';
+              }
+            ?>
               <div class="sidebar_profile">
-                <div class="profile_pic text-center">
+                <div <?= $display ?> class="profile_pic text-center">
                   <?php
                     echo $this->Html->image(
                       'CakeAdmin.users/img.jpg',
@@ -36,7 +41,6 @@
                   </div>
                 </div>
               </div>
-            <?php } ?>
 
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
@@ -109,6 +113,20 @@
                             array(
                               'controller'=>'users',
                               'action'=>'changePicture'
+                            ),
+                            array(
+                              'escape'=>false
+                            )
+                          );
+                        ?>
+                      </li>
+                      <li>
+                        <?php
+                          echo $this->Html->link(
+                            __('Settings').' <span class="pull-right fa fa-lock"></span>',
+                            array(
+                              'controller'=>'users',
+                              'action'=>'settings'
                             ),
                             array(
                               'escape'=>false

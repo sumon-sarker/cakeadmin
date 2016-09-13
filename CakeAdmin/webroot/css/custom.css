@@ -78,3 +78,6 @@ body.nav-sm .sidebar_profile{
 .flash-black-border{
 	border-color: black;
 }
+#wizard .wizard_steps{
+	padding-left: 0px;
+}

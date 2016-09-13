@@ -1,6 +1,6 @@
 <div class="page-title">
               <div class="title_left">
-                <h3><?= __('Change Picture') ?></h3>
+                <h3><?= __('Change Settings') ?></h3>
               </div>
 
               <div class="title_right">
@@ -80,8 +80,7 @@
                                 'action'=>'changePicture'
                               ),
                               array(
-                                'escape'=>false,
-                                'class'=>'selected'
+                                'escape'=>false
                               )
                             );
                           ?>
@@ -98,7 +97,8 @@
                                 'action'=>'settings'
                               ),
                               array(
-                                'escape'=>false
+                                'escape'=>false,
+                                'class'=>'selected'
                               )
                             );
                           ?>
@@ -107,31 +107,35 @@
                     </div>
                     <!-- End SmartWizard Content -->
 
-                    <div class="ln_solid"></div>
-                    
-                    <div class="clearfix"></div>
+                    <?= $this->Form->create($user,['class'=>"form-horizontal form-label-left",'novalidate'=>true]) ?>
 
-                    <div class="row">
-                      <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="x_panel">
-                          <div class="x_content">
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                              <?php echo $this->Html->image('CakeAdmin.users/img.jpg') ?>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                              <div class="dropzone" action="<?php echo $this->request->here ?>"></div>
-                            </div>
-                          </div>
+                      <div class="ln_solid"></div>
+                      <div class="item form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <?php
+                            $sidebar_profile_photo = [0=>'Hide',1=>'Show'];
+                            echo $this->Form->input('sidebar_profile_photo',['class'=>'form-control col-md-7 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2','options'=>$sidebar_profile_photo]);
+                          ?>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <?php
+                            $sidebar_expand = [0=>'Collapse',1=>'Expand'];
+                            echo $this->Form->input('sidebar_expand',['class'=>'form-control col-md-7 col-xs-12','data-validate-length-range'=>'10','data-validate-words'=>'2','options'=>$sidebar_expand]);
+                          ?>
                         </div>
                       </div>
-                      <div class="col-md-12 col-sm-12 col-xs-12 text-right">
-                        <button type="submit" class="btn btn-success">Save Changes</button>
+
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-right">
+                          <?= $this->Form->button(__('Update'),array('type'=>'submit','id'=>'send','class'=>'btn btn-success')) ?>
+                        </div>
                       </div>
-                    </div>
+                    <?= $this->Form->end() ?>
+
                   </div>
                 </div>
               </div>
             </div>
 
-<?php echo $this->Html->css('CakeAdmin.vendors/dropzone/dist/min/dropzone.min',['inline'=>'false']) ?>
-<?php echo $this->Html->script('CakeAdmin.vendors/dropzone/dist/min/dropzone.min',['block'=>'footerScript']) ?>
+<?php echo $this->Html->script('CakeAdmin.users_settings',['block'=>'footerScript']) ?>
