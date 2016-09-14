@@ -15,7 +15,7 @@
                       <?php foreach ($userGroups as $userGroup){ ?>
                         <div class="col-md-4 col-sm-6 col-xs-12">
                           <div class="thumbnail">
-                            <div class="image view view-first">
+                            <div class="image view view-first <?= ($userGroup->plugin_prefix=='administrator')? 'administrator' : ''; ?>">
                               <i class="user-group-image fa fa-users"></i>
                                 <h5><?= h($userGroup->name) ?></h5>
                                 <div class="links">
@@ -32,7 +32,7 @@
                                     }
                                   ?>
                                   <?= $this->Html->link(
-                                    '<i class="fa fa-pencil"></i>'.__('Edit'),
+                                    '<i class="fa fa-pencil"></i> '.__('Edit'),
                                     ['action' => 'edit', $userGroup->id],
                                     [
                                       'escape'=>false,
@@ -43,7 +43,7 @@
                                   <?php
                                     if ($userGroup->plugin_prefix!='administrator') {
                                       echo $this->Form->postLink(
-                                        '<i class="fa fa-remove"></i>'.__('Delete'),
+                                        '<i class="fa fa-remove"></i> '.__('Delete'),
                                         ['action' => 'delete', $userGroup->id],
                                         [
                                           'confirm' => __('Are you sure you want to delete # {0}?', $userGroup->id),
@@ -59,12 +59,28 @@
                               <?php if ($userGroup->plugin_prefix=='administrator') { ?>
                                 <p>
                                   <strong>Permissions </strong>
-                                  <span class="label label-info"><?= __('All') ?></span>
+                                  <span class="label label-success pull-right"><?= __('All') ?></span>
+                                </p>
+                                <p>
+                                  <strong>Signup </strong>
+                                  <span class="label label-success pull-right"><?= ($userGroup->allow_registration)? 'enabled' : 'disabled' ?></span>
+                                </p>
+                                <p>
+                                  <strong>Email Verification </strong>
+                                  <span class="label label-success pull-right"><?= ($userGroup->email_verification)? 'enabled' : 'disabled' ?></span>
                                 </p>
                               <?php }else{ ?>
                                 <p>
                                   <strong>Permissions </strong>
-                                  <span class="label label-info"><?= count($userGroup->user_group_permissions) ?></span>
+                                  <span class="label label-info pull-right"><?= count($userGroup->user_group_permissions) ?></span>
+                                </p>
+                                <p>
+                                  <strong>Signup </strong>
+                                  <span class="label label-info pull-right"><?= ($userGroup->allow_registration)? 'enabled' : 'disabled' ?></span>
+                                </p>
+                                <p>
+                                  <strong>Email Verification </strong>
+                                  <span class="label label-info pull-right"><?= ($userGroup->email_verification)? 'enabled' : 'disabled' ?></span>
                                 </p>
                               <?php } ?>
                             </div>

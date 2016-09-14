@@ -1,9 +1,33 @@
 <div class="animate form login_form">
           <?php echo $this->Flash->render('auth'); ?>
           <section class="login_content">
-            <?php echo $this->Form->create() ?>
+            <?php echo $this->Form->create($user,['id'=>'signup-form']) ?>
               <h1>Create An Account</h1>
                 <?php
+                  echo $this->Form->input('user_group_id',[
+                    'placeholder'=>'User Type',
+                    'label'=>false,
+                    'class'=>'form-control',
+                    'options'=>$UserGroups,
+                    'empty'=>'Select Type'
+                    ]
+                  );
+                  echo $this->Form->input('first_name',[
+                    'placeholder'=>'First Name',
+                    'label'=>false,
+                    'class'=>'form-control',
+                    'autofocus'=>true
+                    ]
+                  );
+
+                  echo $this->Form->input('last_name',[
+                    'placeholder'=>'Last Name',
+                    'label'=>false,
+                    'class'=>'form-control',
+                    'autofocus'=>true
+                    ]
+                  );
+
                   echo $this->Form->input('email',[
                     'placeholder'=>'Email',
                     'label'=>false,
@@ -12,14 +36,14 @@
                     ]
                   );
 
-                  echo $this->Form->input('password',[
+                  echo $this->Form->input('new_password',[
                     'placeholder'=>'Password',
                     'label'=>false,
                     'class'=>'form-control'
                     ]
                   );
 
-                  echo $this->Form->input('confirm_password',[
+                  echo $this->Form->input('confirm_new_password',[
                     'placeholder'=>'Confirm Password',
                     'label'=>false,
                     'class'=>'form-control'

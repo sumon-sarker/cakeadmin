@@ -68,12 +68,13 @@ class UserGroupsTable extends Table
             ->notEmpty('name');
 
         $validator
-            ->allowEmpty('alias_name');
-
+            ->integer('allow_registration')
+            ->requirePresence('allow_registration', 'create')
+            ->notEmpty('allow_registration');
         $validator
-            ->integer('allowRegistration')
-            ->requirePresence('allowRegistration', 'create')
-            ->notEmpty('allowRegistration');
+            ->integer('email_verification')
+            ->requirePresence('email_verification', 'create')
+            ->notEmpty('email_verification');
 
         return $validator;
     }

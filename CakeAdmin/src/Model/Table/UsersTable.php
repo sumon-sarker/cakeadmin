@@ -40,13 +40,13 @@ class UsersTable extends Table{
 
         $validator
             ->notEmpty('username')
-            ->add('username', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+            ->add('username', 'unique', ['rule' => 'validateUnique', 'provider' => 'table','This username already exists']);
 
         $validator
             ->email('email')
             ->notEmpty('email')
             ->requirePresence('email','create')
-            ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+            ->add('email', 'unique', ['rule' => 'validateUnique', 'provider' => 'table','message'=>'This email already exists']);
 
         $validator
             ->requirePresence('password','create')
@@ -75,16 +75,19 @@ class UsersTable extends Table{
             ->integer('active')
             ->requirePresence('active', 'create')
             ->notEmpty('active');
-
+        $validator
+            ->integer('user_group_id')
+            ->notEmpty('user_group_id')
+            ->requirePresence('user_group_id');
         /*Dummy Fields*/
         $validator
             #->requirePresence('new_password','update')
-            ->lengthBetween('new_password',[6,16],'Password must be between 6 and 16')
+            ->lengthBetween('new_password',[6,16],'Password must be between 6 and 16','create')
             ->sameAs('new_password', 'confirm_new_password','Password does not match!')
             ->notEmpty('new_password');
         $validator
             #->requirePresence('confirm_new_password','update')
-            ->lengthBetween('confirm_new_password',[6,16],'Password must be between 6 and 16')
+            ->lengthBetween('confirm_new_password',[6,16],'Password must be between 6 and 16','create')
             ->sameAs('confirm_new_password', 'new_password','Password does not match!')
             ->notEmpty('confirm_new_password');
 

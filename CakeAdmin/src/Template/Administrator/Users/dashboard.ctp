@@ -3,32 +3,28 @@
                 <div class="tile-stats">
                   <div class="icon"><i class="fa fa-users"></i></div>
                   <div class="count"><?php echo $totalUsers ?></div>
-                  <h3>Total Users</h3>
-                  <p>Lorem ipsum psdea itgum rixt.</p>
+                  <p>Total Users</p>
                 </div>
               </div>
               <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="tile-stats">
                   <div class="icon"><i class="fa fa-check-circle-o"></i></div>
                   <div class="count"><?php echo $activeUsers ?></div>
-                  <h3>Active Users</h3>
-                  <p>Lorem ipsum psdea itgum rixt.</p>
+                  <p>Active Users</p>
                 </div>
               </div>
               <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="tile-stats">
                   <div class="icon"><i class="fa fa-remove"></i></div>
                   <div class="count"><?php echo $inactiveUsers ?></div>
-                  <h3>Inactive Users</h3>
-                  <p>Lorem ipsum psdea itgum rixt.</p>
+                  <p>Inactive Users</p>
                 </div>
               </div>
               <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="tile-stats">
                   <div class="icon"><i class="fa fa-user"></i></div>
                   <div class="count"><?= $newSignUps ?></div>
-                  <h3>This Month Sign Ups</h3>
-                  <p>Lorem ipsum psdea itgum rixt.</p>
+                  <p>This Month Sign Ups</p>
                 </div>
               </div>
             </div>

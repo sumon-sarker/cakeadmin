@@ -7,6 +7,23 @@ class UsersController extends AppController{
 
     public function signup(){
         $this->ViewBuilder()->layout('login');
+
+        $user = $this->Users->newEntity();
+        if ($this->request->is('post')) {
+            if (isset($this->request->data['new_password'])) {
+                $this->request->data['password'] = $this->request->data['new_password'];
+            }
+            $user = $this->Users->patchEntity($user, $this->request->data);
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__('You have successfully signup!.'));
+                return $this->redirect(['action' => 'login']);
+            } else {
+                $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            }
+        }
+
+        $UserGroups = $this->Users->UserGroups->find('list')->where(['UserGroups.allow_registration'=>1]);
+        $this->set(compact('user','UserGroups'));
     }
 
     public function passwordRecovery(){

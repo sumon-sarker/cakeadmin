@@ -89,7 +89,7 @@ class PermissionScannerController extends AppController{
     }
 
     protected function UserGroupsID(){
-        $UserGroupsID = $this->UserGroups->find('all')->first();
+        $UserGroupsID = $this->UserGroups->find('all')->where(['UserGroups.plugin_prefix'=>'administrator'])->first();
         return $UserGroupsID->id;
     }
 
