@@ -8,6 +8,11 @@ class UsersController extends AppController{
     public function signup(){
         $this->ViewBuilder()->layout('login');
 
+        if ($this->Auth->user()) {
+            $this->Flash->error(__('Permission not allowed!'));
+            return $this->redirect(['controller'=>'users','action'=>'accessDeny']);
+        }
+
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             if (isset($this->request->data['new_password'])) {
@@ -32,6 +37,11 @@ class UsersController extends AppController{
 
     public function login(){
         $this->ViewBuilder()->layout('login');
+
+        if ($this->Auth->user()) {
+            $this->Flash->error(__('Permission not allowed!'));
+            return $this->redirect(['controller'=>'users','action'=>'accessDeny']);
+        }
 
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();

@@ -39,14 +39,16 @@
                   echo $this->Form->input('new_password',[
                     'placeholder'=>'Password',
                     'label'=>false,
-                    'class'=>'form-control'
+                    'class'=>'form-control',
+                    'type'=>'password'
                     ]
                   );
 
                   echo $this->Form->input('confirm_new_password',[
                     'placeholder'=>'Confirm Password',
                     'label'=>false,
-                    'class'=>'form-control'
+                    'class'=>'form-control',
+                    'type'=>'password'
                     ]
                   );
                 ?>

@@ -8,10 +8,13 @@ class AppController extends BaseController{
 
 	public $CakeAdminUser 		= null;
 
+	public $CakeAdminSettings	= null;
+
 	public function initialize(){
 		parent::initialize();
 		$this->InitializeAuthentication();
 		$this->GrantPrefixPermission();
+		$this->CakeAdminSettings();
 	}
 
 	protected function InitializeAuthentication(){
@@ -59,5 +62,11 @@ class AppController extends BaseController{
 				}
 			}
 		}
+	}
+
+	protected function CakeAdminSettings(){
+		$this->loadModel('Settings');
+		$CakeAdminSettings = $this->Settings->find('all')->where(['Settings.settings_title'=>'site_config'])->first();
+		$this->set(compact('CakeAdminSettings'));
 	}
 }

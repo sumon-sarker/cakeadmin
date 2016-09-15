@@ -33,6 +33,7 @@ class UsersTable extends Table{
 
         $validator
             ->requirePresence('first_name','create')
+            ->notBlank('first_name','This field can not be blank!')
             ->notEmpty('first_name');
 
         $validator
@@ -78,7 +79,7 @@ class UsersTable extends Table{
         $validator
             ->integer('user_group_id')
             ->notEmpty('user_group_id')
-            ->requirePresence('user_group_id');
+            ->requirePresence('user_group_id','create');
         /*Dummy Fields*/
         $validator
             #->requirePresence('new_password','update')
