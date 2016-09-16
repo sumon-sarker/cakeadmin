@@ -1,47 +1,83 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Setting'), ['action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="settings index large-9 medium-8 columns content">
-    <h3><?= __('Settings') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th><?= $this->Paginator->sort('id') ?></th>
-                <th><?= $this->Paginator->sort('site_title') ?></th>
-                <th><?= $this->Paginator->sort('site_email') ?></th>
-                <th><?= $this->Paginator->sort('footer_text') ?></th>
-                <th><?= $this->Paginator->sort('created') ?></th>
-                <th><?= $this->Paginator->sort('modified') ?></th>
-                <th class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($settings as $setting): ?>
-            <tr>
-                <td><?= $this->Number->format($setting->id) ?></td>
-                <td><?= h($setting->site_title) ?></td>
-                <td><?= h($setting->site_email) ?></td>
-                <td><?= h($setting->footer_text) ?></td>
-                <td><?= h($setting->created) ?></td>
-                <td><?= h($setting->modified) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $setting->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $setting->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $setting->id], ['confirm' => __('Are you sure you want to delete # {0}?', $setting->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-        </ul>
-        <p><?= $this->Paginator->counter() ?></p>
-    </div>
-</div>
+<?php
+  $this->Form->templates([
+      'inputContainer' => '<div class="item form-group {{type}}{{required}}">
+          {{content}} <span class="help">{{help}}</span></div>'
+  ]);
+?>
+<div class="page-title">
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_content">
+                      <p>
+                        <h3 class="label label-primary">Site Title</h3>
+                      </p>
+                      <p><?= $settings->site_title ?></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_content">
+                      <p>
+                        <h3 class="label label-primary">Site Email</h3>
+                      </p>
+                      <p><?= $settings->site_email ?></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_content">
+                      <p>
+                        <h3 class="label label-primary">Email Verification Subject</h3>
+                      </p>
+                      <p><?= $settings->email_verification_subject ?></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_content">
+                      <p>
+                        <h3 class="label label-primary">Email Verification template</h3>
+                      </p>
+                      <div><?= $settings->email_verification_template ?></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_content">
+                      <p>
+                        <h3 class="label label-primary">Footer text</h3>
+                      </p>
+                      <p><?= $settings->footer_text ?></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+<?php
+    echo $this->Html->css('CakeAdmin.vendors/google-code-prettify/bin/prettify.min.css',
+        ['inline'=>'false']
+    );
+    echo $this->Html->script('CakeAdmin.vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js',
+        ['block'=>'footerScript']
+    );
+    echo $this->Html->script('CakeAdmin.vendors/jquery.hotkeys/jquery.hotkeys.js',
+        ['block'=>'footerScript']
+    );
+    echo $this->Html->script('CakeAdmin.vendors/google-code-prettify/src/prettify.js',
+        ['block'=>'footerScript']
+    );
+    echo $this->Html->script('CakeAdmin.bootstrap-wysiwyg.js',
+        ['block'=>'footerScript']
+    );
+?>

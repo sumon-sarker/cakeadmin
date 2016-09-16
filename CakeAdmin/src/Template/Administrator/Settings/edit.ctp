@@ -7,7 +7,7 @@
 <div class="settings ">
     <div class="page-title">
       <div class="title_left">
-        <h3><?= __('Add Setting') ?></h3>
+        <h3><?= __('Edit Setting') ?></h3>
       </div>
 
       <div class="title_right">
@@ -27,7 +27,7 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2><?= __('Add Setting') ?> <small>SUB TITLE</small></h2>
+            <h2><?= __('Edit Setting') ?> <small>SUB TITLE</small></h2>
             <ul class="nav navbar-right panel_toolbox">
               <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
               </li>
@@ -49,7 +49,7 @@
 
             <?= $this->Form->create($setting,['class'=>"form-horizontal form-label-left",'novalidate'=>true]) ?>
 
-              <span class="section"><?= __('Add Setting') ?></span>
+              <span class="section"><?= __('Edit Setting') ?></span>
               <div class="item form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name <span class="required">*</span>
                 </label>

@@ -148,42 +148,19 @@
                       </li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-cogs"></i> Settings <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li>
-                        <?php
-                          echo $this->Html->link(
-                            __('Site Config').' <span class="pull-right fa fa-th-list"></span>',
-                            array(
-                              'controller'=>'settings',
-                              'action'=>'edit',
-                              'site_config'
-                            ),
-                            array(
-                              'escape'=>false
-                            )
-                          );
-                        ?>
-                      </li>
-                      <li>
-                        <?php
-                          echo $this->Html->link(
-                            __('Signup Email Template').' <span class="pull-right fa fa-th-list"></span>',
-                            array(
-                              'controller'=>'settings',
-                              'action'=>'edit',
-                              'email_verification_template'
-                            ),
-                            array(
-                              'escape'=>false
-                            )
-                          );
-                        ?>
-                      </li>
-                      <li><a href="#">Sidebar</a></li>
-                      <li><a href="#">Header</a></li>
-                      <li><a href="#">Footer</a></li>
-                    </ul>
+                  <li>
+                    <?php
+                      echo $this->Html->link(
+                        '<i class="fa fa-cogs"></i> Settings ',
+                        array(
+                          'controller'=>'settings',
+                          'action'=>'index'
+                        ),
+                        array(
+                          'escape'=>false
+                        )
+                      );
+                    ?>
                   </li>
                 </ul>
               </div>

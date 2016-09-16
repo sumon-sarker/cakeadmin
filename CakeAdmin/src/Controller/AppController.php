@@ -66,7 +66,8 @@ class AppController extends BaseController{
 
 	protected function CakeAdminSettings(){
 		$this->loadModel('Settings');
-		$CakeAdminSettings = $this->Settings->find('all')->where(['Settings.settings_title'=>'site_config'])->first();
+		$CakeAdminSettings = $this->Settings->find('all')->first();
+		$this->CakeAdminSettings = $CakeAdminSettings;
 		$this->set(compact('CakeAdminSettings'));
 	}
 }

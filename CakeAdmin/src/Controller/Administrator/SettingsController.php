@@ -16,12 +16,9 @@ class SettingsController extends AppController
      *
      * @return \Cake\Network\Response|null
      */
-    public function index()
-    {
-        $settings = $this->paginate($this->Settings);
-
+    public function index(){
+        $settings = $this->Settings->find('all')->first();
         $this->set(compact('settings'));
-        $this->set('_serialize', ['settings']);
     }
 
     /**
@@ -72,7 +69,6 @@ class SettingsController extends AppController
      */
     public function edit($id = null)
     {
-        $this->autoRender = false;
         $setting = $this->Settings->get($id, [
             'contain' => []
         ]);
@@ -86,10 +82,8 @@ class SettingsController extends AppController
                 $this->Flash->error(__('The setting could not be saved. Please, try again.'));
             }
         }
-
         $this->set(compact('setting'));
         $this->set('_serialize', ['setting']);
-        $this->render($id);
     }
 
     /**

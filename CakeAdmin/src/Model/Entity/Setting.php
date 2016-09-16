@@ -9,6 +9,7 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $site_title
  * @property string $site_email
+ * @property string $email_verification_subject
  * @property string $email_verification_template
  * @property string $footer_text
  * @property \Cake\I18n\Time $created

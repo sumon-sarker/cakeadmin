@@ -33,8 +33,8 @@ class SettingsTable extends Table
         parent::initialize($config);
 
         $this->table('settings');
-        $this->displayField('settings_title');
-        $this->primaryKey('settings_title');
+        $this->displayField('id');
+        $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
     }
@@ -58,6 +58,10 @@ class SettingsTable extends Table
         $validator
             ->requirePresence('site_email', 'create')
             ->notEmpty('site_email');
+
+        $validator
+            ->requirePresence('email_verification_subject', 'create')
+            ->notEmpty('email_verification_subject');
 
         $validator
             ->requirePresence('email_verification_template', 'create')
