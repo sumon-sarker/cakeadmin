@@ -1,6 +1,6 @@
 <div class="page-title">
-              <div class="title_left">
-                <h3><?= __('Update Informations') ?></h3>
+              <div class="x_panel">
+                <h3><i class="fa fa-info-circle"></i> <?= __('Update Informations') ?></h3>
               </div>
 
               <div class="title_right">

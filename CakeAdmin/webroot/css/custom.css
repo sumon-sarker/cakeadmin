@@ -116,3 +116,7 @@ body.nav-sm .sidebar_profile{
 	min-height: 300px;
 	max-height: 400px;
 }
+.page-title .x_panel > h3{
+	margin: 2px auto;
+	font-size: 17px;
+}

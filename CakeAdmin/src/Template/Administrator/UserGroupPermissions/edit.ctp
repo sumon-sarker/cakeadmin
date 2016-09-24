@@ -6,8 +6,8 @@
 ?>
 <div class="userGroupPermissions ">
     <div class="page-title">
-      <div class="title_left">
-        <h3><?= __('Edit User Group Permission') ?></h3>
+      <div class="x_panel">
+        <h3><i class="fa fa-edit"></i> <?= __('Edit User Group Permission') ?></h3>
       </div>
 
       <div class="title_right">

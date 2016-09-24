@@ -1,6 +1,6 @@
 <div class="page-title">
-              <div class="title_left">
-                <h3><?= __('Change Password') ?></h3>
+              <div class="x_panel">
+                <h3><i class="fa fa-lock"></i> <?= __('Change Password') ?></h3>
               </div>
 
               <div class="title_right">
