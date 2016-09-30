@@ -2,6 +2,9 @@
 namespace CakeAdmin\Controller;
 
 use CakeAdmin\Controller\AppController;
+use Cake\Utility\Text;
+use Cake\Mailer\Email;
+use Cake\Routing\Router;
 
 class UsersController extends AppController{
 
@@ -33,6 +36,33 @@ class UsersController extends AppController{
 
     public function passwordRecovery(){
         $this->ViewBuilder()->layout('login');
+        if ($this->request->is('post')) {
+            if(isset($this->request->data['email'])){
+                $email = $this->request->data['email'];
+                $user = $this->Users->findByEmail($email)->first();
+                if ($user) {
+                    $password_recover_token = sha1(Text::uuid());
+                    $user = $this->Users->patchEntity($user,['password_recover_token'=>$password_recover_token]);
+                    if ($this->Users->save($user)) {
+                        $url = Router::url(['plugin'=>'CakeAdmin','controller'=>'users','action'=>'newPassword'],true);
+                        $url = $url . DS . $user->email . DS . $password_recover_token;
+                        /*Sent recovery link*/
+                        $email = new Email('default');
+                        $email->from([$this->CakeAdminSettings->site_email => $this->CakeAdminSettings->site_title])
+                            ->to($user->email)
+                            ->subject('Password recovery')
+                            ->send($url);
+                        $this->Flash->success(__('Recovery email sent to your email address! Please check your email.'));
+                        return $this->redirect(['controller'=>'users','action'=>'login']);
+                    }
+                    return $this->redirect(['controller'=>'users','action'=>'login']);
+                }else{
+                    $this->Flash->error(__('Email address not found in the system!'));
+                }
+            }else{
+                $this->Flash->error(__('Invalid email address!'));
+            }
+        }
     }
 
     public function login(){

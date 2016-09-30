@@ -8,7 +8,8 @@
                     'placeholder'=>'Enter your registered email',
                     'label'=>false,
                     'class'=>'form-control',
-                    'autofocus'=>true
+                    'autofocus'=>true,
+                    'required'=>true
                     ]
                   );
                 ?>

@@ -74,7 +74,7 @@ class UsersTable extends Table{
 
         $validator
             ->integer('active')
-            ->requirePresence('active', 'create')
+            #->requirePresence('active', 'create')
             ->notEmpty('active');
         $validator
             ->integer('user_group_id')
