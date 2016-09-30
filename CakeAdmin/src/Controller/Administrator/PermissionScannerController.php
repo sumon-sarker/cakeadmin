@@ -3,6 +3,7 @@ namespace CakeAdmin\Controller\Administrator;
 
 use CakeAdmin\Controller\AppController;
 use ReflectionClass;
+use ReflectionMethod;
 
 class PermissionScannerController extends AppController{
 
@@ -19,7 +20,6 @@ class PermissionScannerController extends AppController{
         'beforeFilter'
     ];
 
-
     public function initialize(){
         parent::initialize();
         $this->loadModel('UserGroupPermissions');
@@ -27,50 +27,29 @@ class PermissionScannerController extends AppController{
     }
 
     public function index(){
-        $UserGroupPermissions   = $this->UserGroupPermissions();
-        $UserGroupsID           = $this->UserGroupsID();
+        $this->controllerPath       = '/var/www/html/personal/cakeadmin/plugins/CakeAdmin/src/Controller/Administrator';
+    	$classFiles                 = scandir($this->controllerPath);
+    	$AllClasses                 = $this->scanFiles($classFiles);
+        $ScanAllCA                  = $this->ScanAllCA($AllClasses);
+        $UserGroupsIDs              = $this->UserGroupsIDs();
+        $AllNewControllerActions    = [];
 
-        $this->controllerPath = '/var/www/html/personal/cakeadmin/plugins/CakeAdmin/src/Controller/Administrator';
-
-    	$classFiles = scandir($this->controllerPath);
-    	$classes 	= $this->scanFiles($classFiles);
-
-        $NewControllerActions = [];
-
-        if (!empty($classes)) {
-            foreach ($classes as $key => $class) {
-                $controller = $class;
-                $namespace  = 'CakeAdmin\Controller\Administrator\\'.$class.'Controller';
-                $class = new ReflectionClass($namespace);
-                /*CHECK ONLY PUBLIC METHODS*/
-                $class = $class->getMethods();
-                foreach ($class as $key => $method) {
-                    /*REMOVE BELOW CONDITION AFTER GETTING PUBLIC METHOD ONLY*/
-                    if ($method->class==$namespace) {
-                        $action = $method->name;
-                        if (isset($UserGroupPermissions[$controller]) && in_array($action, $UserGroupPermissions[$controller])) {
-                            continue;
-                        }
-                        /*New Controllers/Actions for Save*/
-                        $data = [
-                            'controller'=>$controller,
-                            'action'=>$action,
-                            'user_group_id'=>$UserGroupsID
-                        ];
-                        $NewControllerActions[] = $data;
-                    }
+        foreach ($UserGroupsIDs as $groupKey => $UserGroupsID) {
+            /*Skip Permission for Admin*/
+            if ($UserGroupsID->plugin_prefix=='administrator') {
+                continue;
+            }
+            $UserGroupPermissions   = $this->UserGroupPermissions($UserGroupsID->id);
+            $NewControllerActions   = $this->GetNewControllerAndActions($ScanAllCA,$UserGroupPermissions,$UserGroupsID->id);
+            if (!empty($NewControllerActions)) {
+                $AllNewControllerActions[$groupKey]         = $NewControllerActions;
+                $entity = $this->UserGroupPermissions->newEntities($NewControllerActions);
+                if($this->UserGroupPermissions->saveMany($entity)){
+                    #SAVE SUCCESS
                 }
             }
         }
-
-    	if (!empty($NewControllerActions)) {
-            $entity = $this->UserGroupPermissions->newEntities($NewControllerActions);
-            if($this->UserGroupPermissions->saveMany($entity)){
-                /*SAVE SUCCESS*/
-            }
-        }
-
-        $this->set('NewControllerActions',$NewControllerActions);
+        $this->set('NewControllerActions',$AllNewControllerActions);
     }
 
     protected function scanFiles($lists){
@@ -88,18 +67,58 @@ class PermissionScannerController extends AppController{
         return $controllers;
     }
 
-    protected function UserGroupsID(){
-        $UserGroupsID = $this->UserGroups->find('all')->where(['UserGroups.plugin_prefix'=>'administrator'])->first();
-        return $UserGroupsID->id;
+    protected function GetNewControllerAndActions($AllFromScan,$AllFromDB,$UserGroupsID){
+        $NewControllerActions = [];
+        foreach ($AllFromScan as $controller => $value) {
+            foreach ($value as $key => $action) {
+                if(isset($AllFromDB[$controller]) && in_array($action,$AllFromDB[$controller])){
+                    continue;
+                }else{
+                    $data = [
+                        'controller'=>$controller,
+                        'action'=>$action,
+                        'user_group_id'=>$UserGroupsID
+                    ];
+                    $NewControllerActions[] = $data;
+                }
+            }
+        }
+        return $NewControllerActions;
     }
 
-    protected function UserGroupPermissions(){
+    protected function ScanAllCA($controllers){
+        $ControllersAndMethods = [];
+        foreach ($controllers as $key => $controller) {
+            $namespace  = 'CakeAdmin\Controller\Administrator\\'.$controller.'Controller';
+            $class = new ReflectionClass($namespace);
+            $class = $class->getMethods(ReflectionMethod::IS_PUBLIC);
+            foreach ($class as $key => $method) {
+                if ($namespace==$method->class) {
+                    if (in_array($method->name, $this->skipActions)) {
+                        continue;
+                    }
+                    $ControllersAndMethods[$controller][] = $method->name;
+                }
+            }
+        }
+        return $ControllersAndMethods;
+    }
+
+    protected function UserGroupsIDs(){
+        $UserGroupsIDs = $this->UserGroups->find('all');
+        return $UserGroupsIDs;
+    }
+
+    protected function UserGroupPermissions($UserGroupsID=1){
         $permissions = $this->UserGroupPermissions->find(
             'all',
             [
                 'fields'=>['controller','action'],
                 'order'=>[
                     'controller'=>'ASC'
+                ],
+                'conditions'=>[
+                    'user_group_id'=>$UserGroupsID
                 ]
             ]
         );

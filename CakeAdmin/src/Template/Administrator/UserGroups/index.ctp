@@ -58,7 +58,11 @@
                             <div class="caption">
                               <?php if ($userGroup->plugin_prefix=='administrator') { ?>
                                 <p>
-                                  <strong>Permissions </strong>
+                                  <strong>Total Permissions </strong>
+                                  <span class="label label-success pull-right"><?= __('All') ?></span>
+                                </p>
+                                <p>
+                                  <strong>Granted Permissions </strong>
                                   <span class="label label-success pull-right"><?= __('All') ?></span>
                                 </p>
                                 <p>
@@ -71,8 +75,12 @@
                                 </p>
                               <?php }else{ ?>
                                 <p>
-                                  <strong>Permissions </strong>
+                                  <strong>Total Permissions </strong>
                                   <span class="label label-info pull-right"><?= count($userGroup->user_group_permissions) ?></span>
+                                </p>
+                                <p>
+                                  <strong>Granted Permissions </strong>
+                                  <span class="label label-success pull-right"><?= __('All') ?></span>
                                 </p>
                                 <p>
                                   <strong>Signup </strong>
