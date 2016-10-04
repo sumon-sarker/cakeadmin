@@ -40,7 +40,7 @@ $cakeDescription = 'CakeAdmin - authentication and authorization plugin ';
         ]);
     ?>
 
-    <?= $this->Html->meta('icon') ?>
+    <?= $this->Html->meta('favicon.ico','CakeAdmin.img/favicon.ico',['type'=>'icon']) ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
