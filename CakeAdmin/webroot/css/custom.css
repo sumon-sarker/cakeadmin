@@ -46,6 +46,17 @@ body.nav-sm .sidebar_profile{
 #permission-scanner{
 	margin-top: 100px;
 }
+#permission-scanner label{
+	display: inline;
+}
+#permission-scanner .tile-stats .icon{
+	right: 5px;
+	top: 10px;
+}
+#permission-scanner .btn-info{
+	width: 100%;
+	padding: 10px;
+}
 .new-controller-actions thead tr{
 	background-color: #2A3F54;
 	color: white;

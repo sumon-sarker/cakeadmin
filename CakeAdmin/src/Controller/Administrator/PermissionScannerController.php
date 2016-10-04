@@ -27,25 +27,27 @@ class PermissionScannerController extends AppController{
     }
 
     public function index(){
-        $this->controllerPath       = '/var/www/html/personal/cakeadmin/plugins/CakeAdmin/src/Controller/Administrator';
-    	$classFiles                 = scandir($this->controllerPath);
-    	$AllClasses                 = $this->scanFiles($classFiles);
-        $ScanAllCA                  = $this->ScanAllCA($AllClasses);
-        $UserGroupsIDs              = $this->UserGroupsIDs();
         $AllNewControllerActions    = [];
+        if ($this->request->is('post')) {
+            $this->controllerPath       = '/var/www/html/personal/cakeadmin/plugins/CakeAdmin/src/Controller/Administrator';
+        	$classFiles                 = scandir($this->controllerPath);
+        	$AllClasses                 = $this->scanFiles($classFiles);
+            $ScanAllCA                  = $this->ScanAllCA($AllClasses);
+            $UserGroupsIDs              = $this->UserGroupsIDs();
 
-        foreach ($UserGroupsIDs as $groupKey => $UserGroupsID) {
-            /*Skip Permission for Admin*/
-            if ($UserGroupsID->plugin_prefix=='administrator') {
-                continue;
-            }
-            $UserGroupPermissions   = $this->UserGroupPermissions($UserGroupsID->id);
-            $NewControllerActions   = $this->GetNewControllerAndActions($ScanAllCA,$UserGroupPermissions,$UserGroupsID->id);
-            if (!empty($NewControllerActions)) {
-                $AllNewControllerActions[$groupKey]         = $NewControllerActions;
-                $entity = $this->UserGroupPermissions->newEntities($NewControllerActions);
-                if($this->UserGroupPermissions->saveMany($entity)){
-                    #SAVE SUCCESS
+            foreach ($UserGroupsIDs as $groupKey => $UserGroupsID) {
+                /*Skip Permission for Admin*/
+                if ($UserGroupsID->plugin_prefix=='administrator') {
+                    continue;
+                }
+                $UserGroupPermissions   = $this->UserGroupPermissions($UserGroupsID->id);
+                $NewControllerActions   = $this->GetNewControllerAndActions($ScanAllCA,$UserGroupPermissions,$UserGroupsID->id);
+                if (!empty($NewControllerActions)) {
+                    $AllNewControllerActions[$groupKey]         = $NewControllerActions;
+                    $entity = $this->UserGroupPermissions->newEntities($NewControllerActions);
+                    if($this->UserGroupPermissions->saveMany($entity)){
+                        #SAVE SUCCESS
+                    }
                 }
             }
         }

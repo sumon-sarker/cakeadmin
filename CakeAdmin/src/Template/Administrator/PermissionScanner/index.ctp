@@ -53,13 +53,46 @@
               </div>
             </div>
       	<?php }else{ ?>
-          <div id="permission-scanner">
-              <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-          	        <div style="margin-top:50px" class="alert text-center">
-          	          <h5><?= __('No new actions found!') ?></h5>
-          	        </div>
+          <?= $this->Form->create(null) ?>
+            <div id="permission-scanner">
+                <div class="row">
+                  <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <label for="applications">
+                      <div class="tile-stats">
+                        <div class="icon">
+                          <?= $this->Form->input('applications',['type'=>'checkbox','label'=>false]) ?>
+                        </div>
+                        <div class="count">Application</div>
+                        <p>Application controllers and actions</p>
+                      </div>
+                    </label>
+                  </div>
+                  <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <label for="plugins">
+                      <div class="tile-stats">
+                        <div class="icon">
+                          <?= $this->Form->input('plugins',['type'=>'checkbox','label'=>false]) ?>
+                        </div>
+                        <div class="count">Plugins</div>
+                        <p>Plugins controllers and actions</p>
+                      </div>
+                    </label>
+                  </div>
+                  <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="tile-stats">
+                      <div class="icon">
+                        <?= $this->Form->input('plugins',['type'=>'checkbox','label'=>false]) ?>
+                      </div>
+                      <div class="count">Recursive</div>
+                      <p>Recursively synchronize all controllers and actions?</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-          </div>
+                <div class="row">
+                  <div class="col-xs-12">
+                    <input class="btn btn-info" value="Synchronize now" type="submit">
+                  </div>
+                </div>
+            </div>
+          <?= $this->Form->end() ?>
         <?php } ?>
