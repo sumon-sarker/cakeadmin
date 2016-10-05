@@ -11,7 +11,6 @@ use Cake\ORM\Entity;
  * @property string $site_email
  * @property string $email_verification_subject
  * @property string $email_verification_template
- * @property string $footer_text
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
  */

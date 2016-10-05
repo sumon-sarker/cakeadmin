@@ -34,31 +34,6 @@
                     </li>
                     <li>
                       <?php
-                          echo $this->Html->link(
-                            '<i class="fa fa-cogs pull-right"></i> '.__('Settings'),
-                            array(
-                              'controller'=>'users',
-                              'action'=>'settings'
-                            ),
-                            array(
-                              'escape'=>false
-                            )
-                          );
-                        ?>
-                    </li>
-                    <li>
-                      <?php
-                        echo $this->Html->link(
-                          'Help',
-                          array(
-                            'controller'=>'users',
-                            'action'=>'index'
-                          )
-                        );
-                      ?>
-                    </li>
-                    <li>
-                      <?php
                         echo $this->Html->link(
                           '<i class="fa fa-sign-out pull-right"></i> Log Out',
                           array(

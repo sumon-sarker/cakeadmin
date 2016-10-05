@@ -33,23 +33,6 @@
                       ?>
                     </li>
                     <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                    </li>
-                    <li>
-                      <?php
-                        echo $this->Html->link(
-                          'Help',
-                          array(
-                            'controller'=>'users',
-                            'action'=>'index'
-                          )
-                        );
-                      ?>
-                    </li>
-                    <li>
                       <?php
                         echo $this->Html->link(
                           '<i class="fa fa-sign-out pull-right"></i> Log Out',
@@ -63,8 +46,7 @@
                           )
                         );
                       ?>
-
-                      <a href="login.html"></a></li>
+                    </li>
                   </ul>
                 </li>
 

@@ -2,7 +2,7 @@
             <div class="navbar nav_title" style="border: 0;">
               <?php
                 echo $this->Html->link(
-                  '<i class="fa fa-heart-o"></i> <span>Cake Admin</span> ',
+                  '<span>Cake Admin</span> ',
                   array(
                     'controller'=>'users',
                     'action'=>'dashboard',
@@ -10,7 +10,7 @@
                   ),
                   array(
                     'escape'=>false,
-                    'class'=>'site_title'
+                    'class'=>'site_title text-center'
                   )
                 );
               ?>

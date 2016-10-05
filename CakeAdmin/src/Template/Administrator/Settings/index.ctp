@@ -51,16 +51,6 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_content">
-                      <p>
-                        <h3 class="label label-primary">Footer text</h3>
-                      </p>
-                      <p><?= $settings->footer_text ?></p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 

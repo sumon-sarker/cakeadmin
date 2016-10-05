@@ -29,10 +29,19 @@ class PermissionScannerController extends AppController{
     public function index(){
         $AllNewControllerActions    = [];
         if ($this->request->is('post')) {
-            $this->controllerPath       = '/var/www/html/personal/cakeadmin/plugins/CakeAdmin/src/Controller/Administrator';
+            #ScanDirectory
+            $applications   = $this->request->data['applications']? 1 : 0;
+            $plugins        = $this->request->data['plugins']? 1 : 0;
+            $recursive      = $this->request->data['recursive']? 1 : 0;
+
+            var_dump(APP);
+
+            $this->controllerPath       = APP . '/Controller';
+                $namespace              = 'App\Controller';
+
         	$classFiles                 = scandir($this->controllerPath);
         	$AllClasses                 = $this->scanFiles($classFiles);
-            $ScanAllCA                  = $this->ScanAllCA($AllClasses);
+            $ScanAllCA                  = $this->ScanAllCA($AllClasses,$namespace);
             $UserGroupsIDs              = $this->UserGroupsIDs();
 
             foreach ($UserGroupsIDs as $groupKey => $UserGroupsID) {
@@ -49,6 +58,9 @@ class PermissionScannerController extends AppController{
                         #SAVE SUCCESS
                     }
                 }
+            }
+            if (empty($AllNewControllerActions)) {
+                $this->Flash->error(__('No more new controllers and actions to synchronize!'));
             }
         }
         $this->set('NewControllerActions',$AllNewControllerActions);
@@ -88,10 +100,10 @@ class PermissionScannerController extends AppController{
         return $NewControllerActions;
     }
 
-    protected function ScanAllCA($controllers){
+    protected function ScanAllCA($controllers,$namespace='App\Controller'){
         $ControllersAndMethods = [];
         foreach ($controllers as $key => $controller) {
-            $namespace  = 'CakeAdmin\Controller\Administrator\\'.$controller.'Controller';
+            $namespace  = $namespace . '\\' . $controller.'Controller';
             $class = new ReflectionClass($namespace);
             $class = $class->getMethods(ReflectionMethod::IS_PUBLIC);
             foreach ($class as $key => $method) {

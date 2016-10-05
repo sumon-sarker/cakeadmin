@@ -60,7 +60,7 @@
                     <label for="applications">
                       <div class="tile-stats">
                         <div class="icon">
-                          <?= $this->Form->input('applications',['type'=>'checkbox','label'=>false]) ?>
+                          <?= $this->Form->input('applications',['type'=>'checkbox','label'=>false,'checked'=>true]) ?>
                         </div>
                         <div class="count">Application</div>
                         <p>Application controllers and actions</p>
@@ -71,7 +71,7 @@
                     <label for="plugins">
                       <div class="tile-stats">
                         <div class="icon">
-                          <?= $this->Form->input('plugins',['type'=>'checkbox','label'=>false]) ?>
+                          <?= $this->Form->input('plugins',['type'=>'checkbox','label'=>false,'checked'=>true]) ?>
                         </div>
                         <div class="count">Plugins</div>
                         <p>Plugins controllers and actions</p>
@@ -79,13 +79,15 @@
                     </label>
                   </div>
                   <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                    <div class="tile-stats">
-                      <div class="icon">
-                        <?= $this->Form->input('plugins',['type'=>'checkbox','label'=>false]) ?>
+                    <label for="recursive">
+                      <div class="tile-stats">
+                        <div class="icon">
+                          <?= $this->Form->input('recursive',['type'=>'checkbox','label'=>false]) ?>
+                        </div>
+                        <div class="count">Recursive</div>
+                        <p>Recursively synchronize all controllers and actions?</p>
                       </div>
-                      <div class="count">Recursive</div>
-                      <p>Recursively synchronize all controllers and actions?</p>
-                    </div>
+                    </label>
                   </div>
                 </div>
                 <div class="row">

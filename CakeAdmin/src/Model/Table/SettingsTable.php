@@ -67,10 +67,6 @@ class SettingsTable extends Table
             ->requirePresence('email_verification_template', 'create')
             ->notEmpty('email_verification_template');
 
-        $validator
-            ->requirePresence('footer_text', 'create')
-            ->notEmpty('footer_text');
-
         return $validator;
     }
 }

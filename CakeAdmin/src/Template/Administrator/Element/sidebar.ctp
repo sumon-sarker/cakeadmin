@@ -2,14 +2,14 @@
             <div class="navbar nav_title" style="border: 0;">
               <?php
                 echo $this->Html->link(
-                  '<i class="fa fa-heart-o"></i> <span>'.$CakeAdminSettings->site_title.'</span> ',
+                  '<span>'.$CakeAdminSettings->site_title.'</span> ',
                   array(
                     'controller'=>'',
                     'action'=>'dashboard'
                   ),
                   array(
                     'escape'=>false,
-                    'class'=>'site_title'
+                    'class'=>'site_title text-center'
                   )
                 );
               ?>

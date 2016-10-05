@@ -23,10 +23,6 @@
             <td><?= h($setting->email_verification_subject) ?></td>
         </tr>
         <tr>
-            <th><?= __('Footer Text') ?></th>
-            <td><?= h($setting->footer_text) ?></td>
-        </tr>
-        <tr>
             <th><?= __('Id') ?></th>
             <td><?= $this->Number->format($setting->id) ?></td>
         </tr>
