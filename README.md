@@ -1,14 +1,14 @@
 ## CakeAdmin - CakePHP 3 authentication and authorization plugin
 
 ### Installation [Using Composer]
-
 You can install this plugin into your CakePHP application using [composer](http://getcomposer.org).
 
 The recommended way to install composer packages is:
 
 ```
-composer require your-name-here/CakeAdmin
+composer require your-name-here/CakeAdmin 
 ```
+
 ### Installation [Zip Download]
 
 1. Download this plugin as zip.
