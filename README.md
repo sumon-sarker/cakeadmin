@@ -1,6 +1,6 @@
-# CakeAdmin plugin for CakePHP
+## CakePHP - CakePHP 3 authentication and authorization plugin
 
-## Installation
+### Installation
 
 You can install this plugin into your CakePHP application using [composer](http://getcomposer.org).
 
